@@ -4,40 +4,51 @@ import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
 import '../App.css';
 
 const Subscriptions = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [subscriptions, setSubscriptions] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingSubscription, setEditingSubscription] = useState(null);
-  const [openMenuId, setOpenMenuId] = useState(null);
   const [deleteConfirmationId, setDeleteConfirmationId] = useState(null);
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   useEffect(() => {
-    const savedSubscriptions = JSON.parse(localStorage.getItem('subscriptions')) || [];
-    setSubscriptions(savedSubscriptions);
+    fetch('http://localhost:3001/subscriptions')
+      .then(response => response.json())
+      .then(data => setSubscriptions(data))
+      .catch(error => console.error('Error fetching subscriptions:', error));
   }, []);
 
   const saveSubscription = (subscriptionData) => {
-    let updatedSubscriptions;
-    if (subscriptionData.id) {
-      // Update existing subscription
-      updatedSubscriptions = subscriptions.map((sub) =>
-        sub.id === subscriptionData.id ? { ...sub, ...subscriptionData } : sub
-      );
-    } else {
-      // Add new subscription
-      const newSubscription = { ...subscriptionData, id: Date.now() };
-      updatedSubscriptions = [...subscriptions, newSubscription];
-    }
-    setSubscriptions(updatedSubscriptions);
-    localStorage.setItem('subscriptions', JSON.stringify(updatedSubscriptions));
-    setEditingSubscription(null);
-    closeModal();
+    const method = subscriptionData.id ? 'PUT' : 'POST';
+    const url = subscriptionData.id ? `http://localhost:3001/subscriptions/${subscriptionData.id}` : 'http://localhost:3001/subscriptions';
+
+    fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...subscriptionData,
+        price: `R ${subscriptionData.cost}`, // Ensure price format matches
+      }),
+    })
+      .then(response => response.json())
+      .then(() => {
+        fetch('http://localhost:3001/subscriptions')
+          .then(response => response.json())
+          .then(data => {
+            setSubscriptions(data);
+            setEditingSubscription(null);
+            setIsModalOpen(false);
+          });
+      })
+      .catch(error => console.error('Error saving subscription:', error));
   };
 
   const deleteSubscription = (id) => {
-    const updatedSubscriptions = subscriptions.filter((sub) => sub.id !== id);
-    setSubscriptions(updatedSubscriptions);
-    localStorage.setItem('subscriptions', JSON.stringify(updatedSubscriptions));
-    setDeleteConfirmationId(null);
+    fetch(`http://localhost:3001/subscriptions/${id}`, { method: 'DELETE' })
+      .then(() => {
+        setSubscriptions(subscriptions.filter(sub => sub.id !== id));
+        setDeleteConfirmationId(null);
+      })
+      .catch(error => console.error('Error deleting subscription:', error));
   };
 
   const openModal = (subscription = null) => {
@@ -97,21 +108,12 @@ const Subscriptions = () => {
             {subscriptions.map((sub) => (
               <tr key={sub.id}>
                 <td>
-                  <img src={sub.logo} alt="logo" width="50" />
+                  <img src="https://via.placeholder.com/50" alt="logo" width="50" />
                 </td>
                 <td>{sub.name}</td>
-                <td>R {sub.cost}</td>
-                <td>{sub.usageHours} hours/{sub.usageFrequency}</td>
-                <td
-                  style={{
-                    color:
-                      sub.importance === 'Optional'
-                        ? 'red'
-                        : sub.importance === 'Regular'
-                        ? 'yellow'
-                        : 'blue',
-                  }}
-                >
+                <td>{sub.price}</td>
+                <td>{sub.usageHours} hours/{sub.usageFrequency || 'N/A'}</td>
+                <td style={{ color: sub.importance === 'Optional' ? 'red' : sub.importance === 'Regular' ? 'yellow' : 'blue' }}>
                   {sub.importance}
                 </td>
                 <td>
