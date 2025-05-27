@@ -1,0 +1,89 @@
+/* RECENT SUBSCRIPTIONS */
+.recent-subscriptions {
+  grid-column: 1 / 9;
+  grid-row: 4;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  min-height: 180px;
+}
+
+.section-header {
+  background: #1dd1a1;
+  color: white;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+.subscriptions-grid {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  height: auto;
+}
+
+.subscription-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.subscription-item:hover {
+  background: #ecf0f1;
+}
+
+.subscription-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subscription-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.subscription-details h4 {
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0 0 2px 0;
+  color: #2c3e50;
+}
+
+.subscription-tag {
+  font-size: 8px;
+  padding: 1px 4px;
+  border-radius: 6px;
+  color: white;
+}
+
+.subscription-price {
+  text-align: right;
+}
+
+.subscription-price .amount {
+  font-size: 11px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.subscription-price .period {
+  font-size: 9px;
+  color: #7f8c8d;
+}
+

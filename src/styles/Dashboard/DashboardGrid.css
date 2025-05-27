@@ -1,0 +1,86 @@
+/* MAIN DASHBOARD GRID */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto auto;
+  gap: 10px;
+  margin-top: 0;
+  align-items: start;
+   overflow: hidden;
+  
+}
+
+
+/* ADD SUBSCRIPTION BUTTON */
+.add-subscription {
+  grid-column: 5 / 9;
+  grid-row: 3;
+  background: white;
+  border: 2px dashed #bdc3c7;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: #7f8c8d;
+  padding: 20px;
+  min-height: 170px;
+}
+
+.add-subscription:hover {
+  border-color: #3498db;
+  background: #f8f9ff;
+}
+
+.add-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ecf0f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.add-subscription:hover .add-icon {
+  background: #3498db;
+  color: white;
+}
+
+.add-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* View More Buttons */
+.view-more {
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.view-more:hover {
+  opacity: 0.8;
+}
+
+.view-more.blue {
+  color: #3498db;
+}
+
+.view-more.red {
+  color: #e74c3c;
+}
+
+.view-more.green {
+  color: #1dd1a1;
+}

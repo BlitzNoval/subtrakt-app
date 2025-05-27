@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import '../styles/Sidebar.css';
 
 const Sidebar = () => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/dashboard', label: 'Dashboard', icon: '📊' },
-    { path: '/subscriptions', label: 'Subscriptions', icon: '📱' },
-    { path: '/budget', label: 'Budget', icon: '💰' },
-    { path: '/usage', label: 'Usage', icon: '📈' },
-    { path: '/settings', label: 'Settings', icon: '⚙️' }
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/subscriptions', label: 'Subscriptions'},
+    { path: '/budget', label: 'Budget'},
+    { path: '/usage', label: 'Usage' },
+    { path: '/settings', label: 'Settings' }
   ];
 
   return (

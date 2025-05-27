@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import AddSubscriptionModal from '../components/AddSubscriptionModal';
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
-import '../App.css';
+import '../styles/Subscriptions.css';
+import '../styles/App.css';
+
 
 const Subscriptions = () => {
   const {

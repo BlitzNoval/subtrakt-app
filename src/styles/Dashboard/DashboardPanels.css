@@ -1,0 +1,134 @@
+/* RB PANELS  */
+.panel-header {
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-header.blue {
+  background: #3498db;
+}
+
+.panel-header.red {
+  background: #e74c3c;
+}
+
+/* Panel Content */
+.panel-content {
+  padding: 12px;
+  height: calc(100% - 40px);
+    overflow: hidden;
+}
+
+/* NOTIFICATION PANELS */
+.recent-notifications {
+  grid-column: 5 / 9;
+  grid-row: 1 / 3;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #3498db;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  min-height: 170px;
+  align-self: stretch;
+}
+
+.consider-cancelling {
+  grid-column: 9 / 13;
+  grid-row: 1 / 3;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #e74c3c;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  min-height: 170px;
+  align-self: stretch;
+}
+
+/* Notification Items */
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.notification-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.notification-text h4 {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 2px 0;
+  color: #2c3e50;
+}
+
+.notification-text p {
+  font-size: 11px;
+  margin: 0;
+  color: #7f8c8d;
+}
+
+/* Cancellation Items */
+.cancellation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  
+}
+
+.service-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.service-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.service-details h4 {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 2px 0;
+  color: #2c3e50;
+}
+
+.service-tag {
+  font-size: 9px;
+  background: #74b9ff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.service-price {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2c3e50;
+}

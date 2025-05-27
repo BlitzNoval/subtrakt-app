@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSubscriptions } from '../context/SubscriptionContext';
+import '../styles/Subscriptions.css'; 
 
 const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
   const { saveSubscription, loading } = useSubscriptions();
@@ -28,7 +29,7 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
     if (subscription) {
       setFormData({
         ...subscription,
-        cost: subscription.price?.replace(/[^\d.]/g, '') || subscription.cost || '',
+        cost: subscription.price?.replace(/[^\d.]/g, '') || '',
         isTrial: subscription.isTrial || subscription.price === 'Free Trial'
       });
     }
@@ -43,7 +44,7 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
       newErrors.name = 'Subscription name is required';
     }
 
-    if (!formData.cost || parseFloat(formData.cost) <= 0) {
+    if (!formData.cost || formData.cost <= 0) {
       newErrors.cost = 'Cost must be greater than 0';
     }
 
@@ -90,16 +91,13 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
     }
 
     try {
-      const subscriptionToSave = {
+      await saveSubscription({
         ...formData,
-        id: subscription?.id // Include ID if editing
-      };
-      
-      await saveSubscription(subscriptionToSave);
+        id: subscription?.id
+      });
       closeModal();
     } catch (error) {
       console.error('Error saving subscription:', error);
-      // You could set an error state here to show to the user
     }
   };
 

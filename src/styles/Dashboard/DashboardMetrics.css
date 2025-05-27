@@ -1,0 +1,64 @@
+/* METRIC CARDS GRID - 2x2 Layout */
+.metrics-grid {
+  grid-column: 1 / 5;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 80px 80px;
+  gap: 10px;
+}
+
+/* Individual Metric Cards */
+.metric-card {
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Metric Card Colors */
+.metric-card.active-subs {
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+}
+
+.metric-card.total-spent {
+  background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+}
+
+.metric-card.new-subs {
+  background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+}
+
+.metric-card.free-trials {
+  background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);
+}
+
+/* Metric Numbers and Labels */
+.metric-number {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.metric-label {
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.2;
+  opacity: 0.9;
+}
+
+.metric-icon {
+  font-size: 14px;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}

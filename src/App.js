@@ -7,7 +7,7 @@ import Subscriptions from './pages/Subscriptions';
 import Budget from './pages/Budget';
 import Usage from './pages/Usage';
 import Settings from './pages/Settings';
-import './App.css';
+import './styles/App.css'; 
 
 function App() {
   return (
