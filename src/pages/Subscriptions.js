@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AddSubscriptionModal from '../components/AddSubscriptionModal';
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
 import '../App.css';
@@ -9,6 +9,7 @@ const Subscriptions = () => {
   const [editingSubscription, setEditingSubscription] = useState(null);
   const [deleteConfirmationId, setDeleteConfirmationId] = useState(null);
   const [openMenuId, setOpenMenuId] = useState(null);
+  const actionMenuRef = useRef(null); // Ref to track the action menu
 
   useEffect(() => {
     fetch('http://localhost:3001/subscriptions')
@@ -16,6 +17,18 @@ const Subscriptions = () => {
       .then(data => setSubscriptions(data))
       .catch(error => console.error('Error fetching subscriptions:', error));
   }, []);
+
+  useEffect(() => {
+    // Add event listener to detect clicks outside the action menu
+    const handleClickOutside = (event) => {
+      if (actionMenuRef.current && !actionMenuRef.current.contains(event.target)) {
+        setOpenMenuId(null); // Close the menu if clicked outside
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside); // Cleanup
+  }, []); // Empty dependency array means it runs once on mount and unmount
 
   const saveSubscription = (subscriptionData) => {
     const method = subscriptionData.id ? 'PUT' : 'POST';
@@ -119,7 +132,7 @@ const Subscriptions = () => {
                 <td>
                   <button onClick={() => handleActionClick(sub.id)}>Actions</button>
                   {openMenuId === sub.id && (
-                    <div className="action-menu">
+                    <div className="action-menu" ref={actionMenuRef}>
                       <button onClick={() => handleEdit(sub)}>Edit</button>
                       <button onClick={() => handleDelete(sub.id)}>Delete</button>
                     </div>

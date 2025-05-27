@@ -5,3 +5,7 @@
 [2025-05-26T22:29:09.355Z] Added Subscription: ID=3, Name=111, Price=R , Usage=0 hours/N/A, Category=N/A, Importance=Optional
 [2025-05-26T22:29:12.508Z] Deleted Subscription: ID=3
 [2025-05-26T22:29:14.678Z] Deleted Subscription: ID=2
+[2025-05-27T15:53:55.044Z] Added Subscription: ID=4, Name=Anezka, Price=R 200, Usage=43 hours/day, Category=productivity, Importance=Optional
+[2025-05-27T15:54:49.064Z] Deleted Subscription: ID=4
+[2025-05-27T15:55:34.195Z] Added Subscription: ID=5, Name=TestSubscription, Price=R 200, Usage=53 hours/week, Category=productivity, Importance=Optional
+[2025-05-27T16:07:05.413Z] Deleted Subscription: ID=5
