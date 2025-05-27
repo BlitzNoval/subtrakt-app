@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SubscriptionProvider } from './context/SubscriptionContext';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Subscriptions from './pages/Subscriptions';
@@ -8,32 +10,24 @@ import Settings from './pages/Settings';
 import './App.css';
 
 function App() {
-  const [currentSection, setCurrentSection] = useState('dashboard');
-
-  const renderSection = () => {
-    switch (currentSection) {
-      case 'dashboard':
-        return <Dashboard />;
-      case 'subscriptions':
-        return <Subscriptions />;
-      case 'budget':
-        return <Budget />;
-      case 'usage':
-        return <Usage />;
-      case 'settings':
-        return <Settings />;
-      default:
-        return <Dashboard />;
-    }
-  };
-
   return (
-    <div>
-      <Sidebar setCurrentSection={setCurrentSection} />
-      <div className="content">
-        {renderSection()}
-      </div>
-    </div>
+    <SubscriptionProvider>
+      <Router>
+        <div className="app">
+          <Sidebar />
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/subscriptions" element={<Subscriptions />} />
+              <Route path="/budget" element={<Budget />} />
+              <Route path="/usage" element={<Usage />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
+    </SubscriptionProvider>
   );
 }
 
