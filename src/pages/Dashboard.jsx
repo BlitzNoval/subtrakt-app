@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSubscriptions } from '../context/SubscriptionContext';
 import '../styles/Dashboard/DashboardHeader.css';
 import '../styles/Dashboard/DashboardGrid.css';
 import '../styles/Dashboard/DashboardQuickTips.css';
@@ -6,21 +8,8 @@ import '../styles/Dashboard/DashboardRecent.css';
 import '../styles/Dashboard/DashboardMetrics.css';
 import '../styles/Dashboard/DashboardPanels.css';
 
-// Mock context for demo
-const useSubscriptions = () => ({
-  loading: false,
-  activeSubscriptions: 16,
-  newSubscriptionsThisMonth: 6,
-  freeTrialsActive: 2,
-  totalMonthlySpent: 470,
-  subscriptions: [
-    { id: 1, name: 'Netflix', price: 'R 199', isTrial: false, category: 'Entertainment' },
-    { id: 2, name: 'Spotify', price: 'R 59', isTrial: false, category: 'Entertainment' },
-    { id: 3, name: 'Adobe Creative Cloud', price: 'R 679', isTrial: true, category: 'Software' }
-  ]
-});
-
 const Dashboard = () => {
+  const navigate = useNavigate();
   const {
     loading,
     activeSubscriptions,
@@ -39,7 +28,62 @@ const Dashboard = () => {
     );
   }
 
-  const trialsEndingSoon = subscriptions.filter(sub => sub.isTrial).slice(0, 2);
+  // Get trial subscriptions ending soon
+  const trialsEndingSoon = subscriptions.filter(sub => {
+    if (!sub.isTrial || !sub.trialEndDate) return false;
+    const daysUntilEnd = Math.ceil((new Date(sub.trialEndDate) - new Date()) / (1000 * 60 * 60 * 24));
+    return daysUntilEnd <= 7 && daysUntilEnd > 0;
+  }).slice(0, 2);
+
+  // Get subscriptions to consider cancelling (high cost or rarely used)
+  const cancellationCandidates = subscriptions.filter(sub => {
+    const cost = parseFloat(sub.price?.replace(/[^\d.]/g, '') || sub.cost || 0);
+    const isHighCost = cost > 200;
+    const isRarelyUsed = sub.usageFrequency === 'rarely' || (sub.usageHours && parseInt(sub.usageHours) < 2);
+    return isHighCost || isRarelyUsed || sub.importance === 'Optional';
+  }).slice(0, 2);
+
+  // Get recent subscriptions (last 4 added)
+  const recentSubscriptions = [...subscriptions]
+    .sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0))
+    .slice(0, 4);
+
+  // Navigate to subscriptions page
+  const handleAddSubscription = () => {
+    navigate('/subscriptions');
+  };
+
+  // Get service color based on category
+  const getCategoryColor = (category) => {
+    const colors = {
+      'Entertainment': '#1f77b4',
+      'Software': '#ff6b6b',
+      'Productivity': '#e74c3c',
+      'Cloud Storage': '#0077b5',
+      'Education': '#27ae60',
+      'Finance Tools': '#f39c12',
+      'Professional': '#27ae60',
+      'Gaming': '#9b59b6',
+      'Health & Fitness': '#1abc9c'
+    };
+    return colors[category] || '#58cc02';
+  };
+
+  // Get tag color based on category
+  const getTagColor = (category) => {
+    const colors = {
+      'Entertainment': '#e17055',
+      'Software': '#f39c12',
+      'Productivity': '#74b9ff',
+      'Cloud Storage': '#a29bfe',
+      'Education': '#00d2d3',
+      'Finance Tools': '#f39c12',
+      'Professional': '#27ae60',
+      'Gaming': '#fd79a8',
+      'Health & Fitness': '#55efc4'
+    };
+    return colors[category] || '#74b9ff';
+  };
 
   return (
     <div className="dashboard">
@@ -80,7 +124,8 @@ const Dashboard = () => {
 
           {/* Total Spent */}
           <div className="metric-card total-spent">
-            <div className="metric-number">R{totalMonthlySpent}</div>
+          
+            <div className="metric-number">R{totalMonthlySpent.toFixed(0)}</div>
             <div className="metric-label">Total Spent<br />This Month</div>
           </div>
 
@@ -109,18 +154,19 @@ const Dashboard = () => {
             Recent Notifications 🔔
           </div>
           <div className="panel-content">
-            {trialsEndingSoon.map((trial, index) => (
-              <div key={index} className="notification-item">
-                <div className="notification-icon" style={{ backgroundColor: '#e74c3c' }}>
-                  {trial.name.charAt(0)}
+            {trialsEndingSoon.length > 0 ? (
+              trialsEndingSoon.map((trial, index) => (
+                <div key={index} className="notification-item">
+                  <div className="notification-icon" style={{ backgroundColor: '#e74c3c' }}>
+                    {trial.name.charAt(0)}
+                  </div>
+                  <div className="notification-text">
+                    <h4>Free Trial Ending Soon</h4>
+                    <p>{trial.name} trial ends in {Math.ceil((new Date(trial.trialEndDate) - new Date()) / (1000 * 60 * 60 * 24))} days</p>
+                  </div>
                 </div>
-                <div className="notification-text">
-                  <h4>Free Trial Ending Soon</h4>
-                  <p>{trial.name} trial ends 72 hours</p>
-                </div>
-              </div>
-            ))}
-            {trialsEndingSoon.length === 0 && (
+              ))
+            ) : (
               <div className="notification-item">
                 <div className="notification-icon" style={{ backgroundColor: '#27ae60' }}>
                   ✓
@@ -131,16 +177,23 @@ const Dashboard = () => {
                 </div>
               </div>
             )}
-            <div className="notification-item">
-              <div className="notification-icon" style={{ backgroundColor: '#f39c12' }}>
-                🕒
+            
+            {/* Low usage notifications */}
+            {subscriptions.filter(sub => sub.usageFrequency === 'rarely').slice(0, 1).map((sub, index) => (
+              <div key={`low-usage-${index}`} className="notification-item">
+                <div className="notification-icon" style={{ backgroundColor: '#f39c12' }}>
+                  🕒
+                </div>
+                <div className="notification-text">
+                  <h4>Low Usage Time</h4>
+                  <p>{sub.name} rarely used</p>
+                </div>
               </div>
-              <div className="notification-text">
-                <h4>Low Usage Time</h4>
-                <p>Subscription rarely used</p>
-              </div>
-            </div>
-            <button className="view-more blue">VIEW MORE →</button>
+            ))}
+            
+            <button className="view-more blue" onClick={() => navigate('/subscriptions')}>
+              VIEW MORE →
+            </button>
           </div>
         </div>
 
@@ -150,36 +203,42 @@ const Dashboard = () => {
             Consider Cancelling ⚠️
           </div>
           <div className="panel-content">
-            <div className="cancellation-item">
-              <div className="service-info">
-                <div className="service-icon">NE</div>
-                <div className="service-details">
-                  <h4>Netflix</h4>
-                  <span className="service-tag">Entertainment</span>
+            {cancellationCandidates.length > 0 ? (
+              cancellationCandidates.map((sub, index) => (
+                <div key={index} className="cancellation-item">
+                  <div className="service-info">
+                    <div className="service-icon" style={{ backgroundColor: getCategoryColor(sub.category) }}>
+                      {sub.name.substring(0, 2).toUpperCase()}
+                    </div>
+                    <div className="service-details">
+                      <h4>{sub.name}</h4>
+                      <span className="service-tag" style={{ backgroundColor: getTagColor(sub.category) }}>
+                        {sub.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="service-price">{sub.price}/mo</div>
+                </div>
+              ))
+            ) : (
+              <div className="notification-item">
+                <div className="notification-icon" style={{ backgroundColor: '#27ae60' }}>
+                  ✓
+                </div>
+                <div className="notification-text">
+                  <h4>All subscriptions look good!</h4>
+                  <p>No recommendations at this time</p>
                 </div>
               </div>
-              <div className="service-price">R199.00/mo</div>
-            </div>
-            <div className="cancellation-item">
-              <div className="service-info">
-                <div className="service-icon" style={{ backgroundColor: '#e74c3c' }}>
-                  AD
-                </div>
-                <div className="service-details">
-                  <h4>Adobe Creative Cloud</h4>
-                  <span className="service-tag" style={{ backgroundColor: '#f39c12' }}>
-                    Software
-                  </span>
-                </div>
-              </div>
-              <div className="service-price">R679.00/mo</div>
-            </div>
-            <button className="view-more red">VIEW MORE →</button>
+            )}
+            <button className="view-more red" onClick={() => navigate('/subscriptions')}>
+              VIEW MORE →
+            </button>
           </div>
         </div>
 
         {/* Add Subscription Button */}
-        <button className="add-subscription">
+        <button className="add-subscription" onClick={handleAddSubscription}>
           <div className="add-icon">+</div>
           <div className="add-text">Add Subscription</div>
         </button>
@@ -188,79 +247,39 @@ const Dashboard = () => {
         <div className="recent-subscriptions">
           <div className="section-header">Recent Subscriptions</div>
           <div className="subscriptions-grid">
-            <div className="subscription-item">
-              <div className="subscription-info">
-                <div className="subscription-icon" style={{ backgroundColor: '#3498db' }}>
-                  WSJ
+            {recentSubscriptions.length > 0 ? (
+              recentSubscriptions.map((sub, index) => (
+                <div key={sub.id} className="subscription-item">
+                  <div className="subscription-info">
+                    <div className="subscription-icon" style={{ backgroundColor: getCategoryColor(sub.category) }}>
+                      {sub.name.length >= 3 ? sub.name.substring(0, 3).toUpperCase() : sub.name.substring(0, 2).toUpperCase()}
+                    </div>
+                    <div className="subscription-details">
+                      <h4>{sub.name}</h4>
+                      <span className="subscription-tag" style={{ backgroundColor: getTagColor(sub.category) }}>
+                        {sub.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="subscription-price">
+                    <div className="amount">{sub.price}/{sub.billingCycle === 'yearly' ? 'yr' : 'mo'}</div>
+                    <div className="period">
+                      {sub.isTrial ? 'Free Trial' : 
+                       sub.renewalDate ? `Renews ${new Date(sub.renewalDate).toLocaleDateString('en-US', {month: 'short', day: 'numeric'})}` : 
+                       sub.billingCycle || 'Monthly'}
+                    </div>
+                  </div>
                 </div>
-                <div className="subscription-details">
-                  <h4>Wall Street Journal</h4>
-                  <span className="subscription-tag" style={{ backgroundColor: '#f39c12' }}>
-                    Finance Tools
-                  </span>
-                </div>
+              ))
+            ) : (
+              <div style={{ textAlign: 'center', padding: '20px', color: '#7f8c8d' }}>
+                <p>No subscriptions yet. Add your first subscription to get started!</p>
               </div>
-              <div className="subscription-price">
-                <div className="amount">R110.00/mo</div>
-                <div className="period">Renews May 20</div>
-              </div>
-            </div>
-
-            <div className="subscription-item">
-              <div className="subscription-info">
-                <div className="subscription-icon" style={{ backgroundColor: '#0077b5' }}>
-                  LI
-                </div>
-                <div className="subscription-details">
-                  <h4>LinkedIn Premium</h4>
-                  <span className="subscription-tag" style={{ backgroundColor: '#27ae60' }}>
-                    Professional
-                  </span>
-                </div>
-              </div>
-              <div className="subscription-price">
-                <div className="amount">R110.00/mo</div>
-                <div className="period">Free Trial</div>
-              </div>
-            </div>
-
-            <div className="subscription-item">
-              <div className="subscription-info">
-                <div className="subscription-icon" style={{ backgroundColor: '#e74c3c' }}>
-                  MO
-                </div>
-                <div className="subscription-details">
-                  <h4>Monday.com</h4>
-                  <span className="subscription-tag" style={{ backgroundColor: '#74b9ff' }}>
-                    Productivity
-                  </span>
-                </div>
-              </div>
-              <div className="subscription-price">
-                <div className="amount">R1110.00/yr</div>
-                <div className="period">Renews May 28</div>
-              </div>
-            </div>
-
-            <div className="subscription-item">
-              <div className="subscription-info">
-                <div className="subscription-icon" style={{ backgroundColor: '#27ae60' }}>
-                  DU
-                </div>
-                <div className="subscription-details">
-                  <h4>Duolingo</h4>
-                  <span className="subscription-tag" style={{ backgroundColor: '#e17055' }}>
-                    Entertainment
-                  </span>
-                </div>
-              </div>
-              <div className="subscription-price">
-                <div className="amount">R110.00/mo</div>
-                <div className="period">Renews May 14</div>
-              </div>
-            </div>
+            )}
           </div>
-          <button className="view-more green">VIEW MORE →</button>
+          <button className="view-more green" onClick={() => navigate('/subscriptions')}>
+            VIEW MORE →
+          </button>
         </div>
 
         {/* Quick Tips */}
@@ -272,7 +291,9 @@ const Dashboard = () => {
             Consider pausing or cancelling them —<br />
             future you will thank you.
           </div>
-          <button className="tips-button">VIEW USAGE INSIGHTS →</button>
+          <button className="tips-button" onClick={() => navigate('/usage')}>
+            VIEW USAGE INSIGHTS →
+          </button>
         </div>
       </div>
     </div>
