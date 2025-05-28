@@ -1,26 +1,15 @@
 import React from 'react';
 import '../styles/App.css'; 
-import '../styles/Subscription/Subscriptions.css'; 
-import '../styles/Subscription/Modals/Modal.css';
-import '../styles/Subscription/Modals/DeleteModal.css';
-import '../styles/Subscription/Modals/ModalLayout.css';
+import '../styles/Subscriptions.css'; 
 
 const DeleteConfirmationModal = ({ onConfirm, onCancel }) => {
   return (
-    <div className="modal-overlay delete-modal">
+    <div className="modal-overlay">
       <div className="modal-content">
-        <div className="modal-header">
-          <h2>Delete Subscription</h2>
-          <button className="close-button" onClick={onCancel}>✕</button>
-        </div>
-        <div className="modal-body">
-          <div className="warning-icon">⚠️</div>
-          <h3>Are you sure?</h3>
-          <p>This action cannot be undone. This subscription will be permanently deleted from your account.</p>
-        </div>
+        <h2>Are you sure you want to delete this subscription?</h2>
         <div className="modal-footer">
           <button onClick={onCancel}>Cancel</button>
-          <button className="delete-button" onClick={onConfirm}>Delete Subscription</button>
+          <button onClick={onConfirm}>Confirm Delete</button>
         </div>
       </div>
     </div>
