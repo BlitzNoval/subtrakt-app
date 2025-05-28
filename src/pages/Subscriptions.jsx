@@ -1,40 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import AddSubscriptionModal from '../components/AddSubscriptionModal';
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
-import '../styles/Subscriptions.css';
-import '../styles/App.css';
-
+import SearchFilter from '../components/SearchFilter';
+import SubscriptionRow from '../components/SubscriptionComponents/SubRow';
+import MetricsSidebar from '../components/SubscriptionComponents/MetricsBar';
+import { 
+  filterSubscriptions, 
+  getCategoryColor, 
+  getTagColor 
+} from '../components/SubscriptionComponents/SubFunctionality';
+import '../styles/Subscription/Subscriptions.css';
 
 const Subscriptions = () => {
-  const {
-    subscriptions,
-    loading,
-    fetchSubscriptions,
-    saveSubscription,
-    removeSubscription
-  } = useSubscriptions();
-
+  const { subscriptions, loading, fetchSubscriptions, saveSubscription, removeSubscription } = useSubscriptions();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingSubscription, setEditingSubscription] = useState(null);
   const [deleteConfirmationId, setDeleteConfirmationId] = useState(null);
-  const [openMenuId, setOpenMenuId] = useState(null);
-  const actionMenuRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filters, setFilters] = useState({
+    category: '',
+    importance: '',
+    status: '',
+    priceRange: '',
+    billingCycle: ''
+  });
 
-  useEffect(() => {
-    fetchSubscriptions();
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (actionMenuRef.current && !actionMenuRef.current.contains(event.target)) {
-        setOpenMenuId(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  useEffect(() => fetchSubscriptions(), []);
 
   const handleSaveSubscription = async (subscriptionData) => {
     try {
@@ -60,24 +52,18 @@ const Subscriptions = () => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setEditingSubscription(null);
-  };
+  // Calculate metrics
+  const totalMonthlySpent = subscriptions.reduce((total, sub) => 
+    total + parseFloat(sub.price?.replace(/[^\d.]/g, '') || 0), 0);
+  const activeSubscriptions = subscriptions.filter(sub => !sub.isTrial).length;
+  const freeTrials = subscriptions.filter(sub => sub.isTrial).length;
 
-  const handleActionClick = (id) => {
-    setOpenMenuId(openMenuId === id ? null : id);
-  };
-
-  const handleEdit = (subscription) => {
-    openModal(subscription);
-    setOpenMenuId(null);
-  };
-
-  const handleDelete = (id) => {
-    setDeleteConfirmationId(id);
-    setOpenMenuId(null);
-  };
+  // Filter subscriptions
+  const filteredSubscriptions = filterSubscriptions(
+    subscriptions, 
+    searchTerm, 
+    filters
+  );
 
   if (loading && subscriptions.length === 0) {
     return (
@@ -93,132 +79,78 @@ const Subscriptions = () => {
   return (
     <div className="subscriptions-page">
       <div className="page-header">
-        <h1>My Subscriptions</h1>
-        <p>Manage all your subscription services in one place</p>
+        <div className="page-header-content">
+          <h1>My Subscriptions</h1>
+          <p>Manage all your subscription services in one place</p>
+        </div>
         <button className="add-subscription-btn" onClick={() => openModal()}>
           Add New Subscription
         </button>
       </div>
 
-      {subscriptions.length === 0 ? (
-        <div className="empty-state">
-          <div className="empty-icon">📱</div>
-          <h3>No subscriptions yet</h3>
-          <p>Start by adding your first subscription to track your monthly spending.</p>
-          <button onClick={() => openModal()}>Add Your First Subscription</button>
-        </div>
-      ) : (
-        <div className="subscriptions-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Service</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Usage</th>
-                <th>Importance</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {subscriptions.map((sub) => (
-                <tr key={sub.id}>
-                  <td>
-                    <div className="service-info">
-                      <div className="service-logo">
-                        <img 
-                          src="https://via.placeholder.com/40x40/007bff/ffffff?text=📱" 
-                          alt={`${sub.name} logo`} 
-                          width="40" 
-                          height="40"
-                        />
-                      </div>
-                      <div className="service-details">
-                        <strong>{sub.name}</strong>
-                        <small>{sub.billingCycle || 'Monthly'}</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span className="price">{sub.price}</span>
-                  </td>
-                  <td>
-                    <span className="category-badge">{sub.category}</span>
-                  </td>
-                  <td>
-                    {sub.usageHours ? (
-                      <span>{sub.usageHours} hrs/{sub.usageFrequency || 'week'}</span>
-                    ) : (
-                      <span className="no-data">Not tracked</span>
-                    )}
-                  </td>
-                  <td>
-                    <span 
-                      className={`importance-badge importance-${sub.importance?.toLowerCase()}`}
-                    >
-                      {sub.importance}
-                    </span>
-                  </td>
-                  <td>
-                    {sub.isTrial ? (
-                      <span className="status-badge trial">Free Trial</span>
-                    ) : (
-                      <span className="status-badge active">Active</span>
-                    )}
-                  </td>
-                  <td className="actions-cell">
-                    <button 
-                      className="actions-btn"
-                      onClick={() => handleActionClick(sub.id)}
-                    >
-                      ⋮
-                    </button>
-                    {openMenuId === sub.id && (
-                      <div className="action-menu" ref={actionMenuRef}>
-                        <button onClick={() => handleEdit(sub)}>
-                          ✏️ Edit
-                        </button>
-                        <button onClick={() => handleDelete(sub.id)}>
-                          🗑️ Delete
-                        </button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+      <SearchFilter
+        onSearch={setSearchTerm}
+        onFilter={setFilters}
+        categories={[...new Set(subscriptions.map(sub => sub.category))].filter(Boolean)}
+        importanceLevels={['Critical', 'Regular', 'Optional']}
+      />
 
-      {/* Summary Cards */}
-      <div className="subscription-summary">
-        <div className="summary-card">
-          <h3>Total Monthly Cost</h3>
-          <div className="summary-value">
-            R{subscriptions.reduce((total, sub) => {
-              const price = parseFloat(sub.price?.replace(/[^\d.]/g, '') || 0);
-              return total + price;
-            }, 0).toFixed(2)}
+      <div className="subscriptions-content">
+        {subscriptions.length === 0 ? (
+          <div className="table-container">
+            <div className="empty-state">
+              <div className="empty-icon">📱</div>
+              <h3>No subscriptions yet</h3>
+              <p>Start by adding your first subscription to track your monthly spending.</p>
+              <button onClick={() => openModal()}>Add Your First Subscription</button>
+            </div>
           </div>
-        </div>
-        <div className="summary-card">
-          <h3>Active Subscriptions</h3>
-          <div className="summary-value">{subscriptions.length}</div>
-        </div>
-        <div className="summary-card">
-          <h3>Free Trials</h3>
-          <div className="summary-value">
-            {subscriptions.filter(sub => sub.isTrial).length}
-          </div>
-        </div>
+        ) : (
+          <>
+            <div className="table-container">
+              <div className="subscriptions-table">
+                <div className="table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Service</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Usage</th>
+                        <th>Importance</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredSubscriptions.map((sub) => (
+                        <SubscriptionRow
+                          key={sub.id}
+                          sub={sub}
+                          onEdit={openModal}
+                          onDelete={setDeleteConfirmationId}
+                          getCategoryColor={getCategoryColor}
+                          getTagColor={getTagColor}
+                        />
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <MetricsSidebar
+              totalMonthlySpent={totalMonthlySpent}
+              activeSubscriptions={activeSubscriptions}
+              freeTrials={freeTrials}
+            />
+          </>
+        )}
       </div>
 
-      {/* Modals */}
       {isModalOpen && (
         <AddSubscriptionModal
-          closeModal={closeModal}
+          closeModal={() => setIsModalOpen(false)}
           saveSubscription={handleSaveSubscription}
           subscription={editingSubscription}
         />

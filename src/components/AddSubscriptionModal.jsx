@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSubscriptions } from '../context/SubscriptionContext';
-import '../styles/Subscriptions.css'; 
+import '../styles/Subscription/Subscriptions.css'; 
+import '../styles/Subscription/Modals/Modal.css';
+import '../styles/Subscription/Modals/ModalLayout.css';
+import '../styles/Subscription/Form/Form.css';
+import '../styles/Subscription/Form/Toggle.css';
 
 const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
   const { saveSubscription, loading } = useSubscriptions();

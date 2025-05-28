@@ -49,6 +49,7 @@ const initialState = {
       dateAdded: '2025-05-01T00:00:00.000Z',
       notes: 'Free trial - decide before it ends'
     }
+    
   ],
   loading: false,
   error: null,
