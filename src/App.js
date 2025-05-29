@@ -7,25 +7,35 @@ import Subscriptions from './pages/Subscriptions';
 import Budget from './pages/Budget';
 import Usage from './pages/Usage';
 import Settings from './pages/Settings';
+import LoginForm from './pages/LoginForm';
 import './styles/App.css'; 
+import './styles/DarkMode.css'; 
 
 function App() {
   return (
     <SubscriptionProvider>
       <Router>
-        <div className="app">
-          <Sidebar />
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/subscriptions" element={<Subscriptions />} />
-              <Route path="/budget" element={<Budget />} />
-              <Route path="/usage" element={<Usage />} />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
-          </div>
-        </div>
+        <Routes>
+          {/* Login route without sidebar */}
+          <Route path="/login" element={<LoginForm />} />
+          
+          {/* Main app routes with sidebar */}
+          <Route path="/*" element={
+            <div className="app">
+              <Sidebar />
+              <div className="content">
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/subscriptions" element={<Subscriptions />} />
+                  <Route path="/budget" element={<Budget />} />
+                  <Route path="/usage" element={<Usage />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Routes>
+              </div>
+            </div>
+          } />
+        </Routes>
       </Router>
     </SubscriptionProvider>
   );
