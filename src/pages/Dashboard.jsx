@@ -16,7 +16,8 @@ const Dashboard = () => {
     newSubscriptionsThisMonth,
     freeTrialsActive,
     totalMonthlySpent,
-    subscriptions
+    subscriptions,
+    getSubscriptionLogo
   } = useSubscriptions();
 
   if (loading) {
@@ -64,7 +65,12 @@ const Dashboard = () => {
       'Finance Tools': '#f39c12',
       'Professional': '#27ae60',
       'Gaming': '#9b59b6',
-      'Health & Fitness': '#1abc9c'
+      'Health & Fitness': '#1abc9c',
+      'News & Media': '#e67e22',
+      'Business': '#34495e',
+      'Developer Tools': '#8e44ad',
+      'Car Subscriptions': '#2c3e50',
+      'Mobile Data': '#16a085'
     };
     return colors[category] || '#58cc02';
   };
@@ -80,9 +86,19 @@ const Dashboard = () => {
       'Finance Tools': '#f39c12',
       'Professional': '#27ae60',
       'Gaming': '#fd79a8',
-      'Health & Fitness': '#55efc4'
+      'Health & Fitness': '#55efc4',
+      'News & Media': '#fab1a0',
+      'Business': '#636e72',
+      'Developer Tools': '#e84393',
+      'Car Subscriptions': '#2d3436',
+      'Mobile Data': '#00b894'
     };
     return colors[category] || '#74b9ff';
+  };
+
+  // Get service initials for fallback
+  const getServiceInitials = (name) => {
+    return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
   };
 
   return (
@@ -124,7 +140,6 @@ const Dashboard = () => {
 
           {/* Total Spent */}
           <div className="metric-card total-spent">
-          
             <div className="metric-number">R{totalMonthlySpent.toFixed(0)}</div>
             <div className="metric-label">Total Spent<br />This Month</div>
           </div>
@@ -157,8 +172,40 @@ const Dashboard = () => {
             {trialsEndingSoon.length > 0 ? (
               trialsEndingSoon.map((trial, index) => (
                 <div key={index} className="notification-item">
-                  <div className="notification-icon" style={{ backgroundColor: '#e74c3c' }}>
-                    {trial.name.charAt(0)}
+                  <div className="notification-icon" style={{ 
+                    background: 'transparent',
+                    padding: '0'
+                  }}>
+                    <img
+                      src={getSubscriptionLogo(trial)}
+                      alt={trial.name}
+                      style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '6px',
+                        objectFit: 'cover'
+                      }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div 
+                      style={{
+                        display: 'none',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '6px',
+                        background: '#e74c3c',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '14px'
+                      }}
+                    >
+                      {getServiceInitials(trial.name)}
+                    </div>
                   </div>
                   <div className="notification-text">
                     <h4>Free Trial Ending Soon</h4>
@@ -181,8 +228,40 @@ const Dashboard = () => {
             {/* Low usage notifications */}
             {subscriptions.filter(sub => sub.usageFrequency === 'rarely').slice(0, 1).map((sub, index) => (
               <div key={`low-usage-${index}`} className="notification-item">
-                <div className="notification-icon" style={{ backgroundColor: '#f39c12' }}>
-                  🕒
+                <div className="notification-icon" style={{ 
+                  background: 'transparent',
+                  padding: '0'
+                }}>
+                  <img
+                    src={getSubscriptionLogo(sub)}
+                    alt={sub.name}
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '6px',
+                      objectFit: 'cover'
+                    }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  <div 
+                    style={{
+                      display: 'none',
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '6px',
+                      background: '#f39c12',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'white',
+                      fontWeight: 'bold',
+                      fontSize: '14px'
+                    }}
+                  >
+                    🕒
+                  </div>
                 </div>
                 <div className="notification-text">
                   <h4>Low Usage Time</h4>
@@ -207,8 +286,40 @@ const Dashboard = () => {
               cancellationCandidates.map((sub, index) => (
                 <div key={index} className="cancellation-item">
                   <div className="service-info">
-                    <div className="service-icon" style={{ backgroundColor: getCategoryColor(sub.category) }}>
-                      {sub.name.substring(0, 2).toUpperCase()}
+                    <div className="service-icon" style={{ 
+                      background: 'transparent',
+                      padding: '0'
+                    }}>
+                      <img
+                        src={getSubscriptionLogo(sub)}
+                        alt={sub.name}
+                        style={{
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '6px',
+                          objectFit: 'cover'
+                        }}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      <div 
+                        style={{
+                          display: 'none',
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '6px',
+                          background: getCategoryColor(sub.category),
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontWeight: 'bold',
+                          fontSize: '12px'
+                        }}
+                      >
+                        {getServiceInitials(sub.name)}
+                      </div>
                     </div>
                     <div className="service-details">
                       <h4>{sub.name}</h4>
@@ -251,8 +362,40 @@ const Dashboard = () => {
               recentSubscriptions.map((sub, index) => (
                 <div key={sub.id} className="subscription-item">
                   <div className="subscription-info">
-                    <div className="subscription-icon" style={{ backgroundColor: getCategoryColor(sub.category) }}>
-                      {sub.name.length >= 3 ? sub.name.substring(0, 3).toUpperCase() : sub.name.substring(0, 2).toUpperCase()}
+                    <div className="subscription-icon" style={{ 
+                      background: 'transparent',
+                      padding: '0'
+                    }}>
+                      <img
+                        src={getSubscriptionLogo(sub)}
+                        alt={sub.name}
+                        style={{
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '4px',
+                          objectFit: 'cover'
+                        }}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      <div 
+                        style={{
+                          display: 'none',
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '4px',
+                          background: getCategoryColor(sub.category),
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontWeight: 'bold',
+                          fontSize: '10px'
+                        }}
+                      >
+                        {getServiceInitials(sub.name)}
+                      </div>
                     </div>
                     <div className="subscription-details">
                       <h4>{sub.name}</h4>

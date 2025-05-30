@@ -1,0 +1,295 @@
+{
+  "Entertainment": [
+    {
+      "name": "Netflix",
+      "logo": "https://logo.clearbit.com/netflix.com",
+      "tiers": [
+        {"name": "Basic", "price": 99, "currency": "ZAR", "cycle": "month"},
+        {"name": "Mobile", "price": 59, "currency": "ZAR", "cycle": "month"},
+        {"name": "Standard", "price": 179, "currency": "ZAR", "cycle": "month"},
+        {"name": "Premium", "price": 229, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "Showmax",
+      "logo": "https://logo.clearbit.com/showmax.com",
+      "tiers": [
+        {"name": "Entertainment", "price": 99, "currency": "ZAR", "cycle": "month"},
+        {"name": "Entertainment Mobile", "price": 50, "currency": "ZAR", "cycle": "month"},
+        {"name": "Premier League", "price": 99, "currency": "ZAR", "cycle": "month"},
+        {"name": "Entertainment + Premier League", "price": 150, "currency": "ZAR", "cycle": "month"},
+        {"name": "Entertainment Mobile + Premier League", "price": 120, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "Amazon Prime Video",
+      "logo": "https://logo.clearbit.com/amazon.com",
+      "tiers": [
+        {"name": "Prime Video (Monthly)", "price": 79, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "Disney+",
+      "logo": "https://logo.clearbit.com/disneyplus.com",
+      "tiers": [
+        {"name": "Standard (Monthly)", "price": 139, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 1390, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Apple TV+",
+      "logo": "https://logo.clearbit.com/apple.com",
+      "tiers": [
+        {"name": "Monthly", "price": 124.99, "currency": "ZAR", "cycle": "month"}
+      ]
+    }
+  ],
+  "Software": [
+    {
+      "name": "Microsoft 365 Basic",
+      "logo": "https://logo.clearbit.com/microsoft.com",
+      "tiers": [
+        {"name": "Monthly", "price": 39, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 399, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Microsoft 365 Personal",
+      "logo": "https://logo.clearbit.com/microsoft.com",
+      "tiers": [
+        {"name": "Monthly", "price": 159, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 1599, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Microsoft 365 Family",
+      "logo": "https://logo.clearbit.com/microsoft.com",
+      "tiers": [
+        {"name": "Monthly", "price": 199, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 1999, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Adobe Creative Cloud Photography (1 TB)",
+      "logo": "https://logo.clearbit.com/adobe.com",
+      "tiers": [
+        {"name": "Monthly (annual prepaid)", "price": 438.15, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 5257.80, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Adobe Creative Cloud All Apps",
+      "logo": "https://logo.clearbit.com/adobe.com",
+      "tiers": [
+        {"name": "Monthly (after 1st year)", "price": 1271.90, "currency": "ZAR", "cycle": "month"},
+        {"name": "Monthly (1st-year intro)", "price": 657.80, "currency": "ZAR", "cycle": "month"}
+      ]
+    }
+  ],
+  "Gaming": [
+    {
+      "name": "PlayStation Plus Essential",
+      "logo": "https://logo.clearbit.com/playstation.com",
+      "tiers": [
+        {"name": "Monthly", "price": 139, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 1109, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "PlayStation Plus Extra",
+      "logo": "https://logo.clearbit.com/playstation.com",
+      "tiers": [
+        {"name": "Monthly", "price": 209, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 1869, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "PlayStation Plus Deluxe",
+      "logo": "https://logo.clearbit.com/playstation.com",
+      "tiers": [
+        {"name": "Monthly", "price": 249, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 2199, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Xbox Game Pass Core",
+      "logo": "https://logo.clearbit.com/xbox.com",
+      "tiers": [
+        {"name": "Monthly", "price": 99, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "Xbox Game Pass Standard",
+      "logo": "https://logo.clearbit.com/xbox.com",
+      "tiers": [
+        {"name": "Monthly", "price": 149, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "Xbox PC Game Pass",
+      "logo": "https://logo.clearbit.com/xbox.com",
+      "tiers": [
+        {"name": "Monthly", "price": 119, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "Xbox Game Pass Ultimate",
+      "logo": "https://logo.clearbit.com/xbox.com",
+      "tiers": [
+        {"name": "Monthly", "price": 199, "currency": "ZAR", "cycle": "month"}
+      ]
+    }
+  ],
+  "Cloud Storage": [
+    {
+      "name": "Google One",
+      "logo": "https://logo.clearbit.com/google.com",
+      "tiers": [
+        {"name": "100 GB", "price": 34.99, "currency": "ZAR", "cycle": "month"},
+        {"name": "200 GB", "price": 52.99, "currency": "ZAR", "cycle": "month"},
+        {"name": "2 TB", "price": 184.99, "currency": "ZAR", "cycle": "month"},
+        {"name": "100 GB Annual", "price": 349.99, "currency": "ZAR", "cycle": "year"},
+        {"name": "200 GB Annual", "price": 529.99, "currency": "ZAR", "cycle": "year"},
+        {"name": "2 TB Annual", "price": 1849.99, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Apple iCloud+",
+      "logo": "https://logo.clearbit.com/apple.com",
+      "tiers": [
+        {"name": "50 GB", "price": 14.99, "currency": "ZAR", "cycle": "month"},
+        {"name": "200 GB", "price": 59.99, "currency": "ZAR", "cycle": "month"},
+        {"name": "2 TB", "price": 199.99, "currency": "ZAR", "cycle": "month"},
+        {"name": "6 TB", "price": 599.99, "currency": "ZAR", "cycle": "month"},
+        {"name": "12 TB", "price": 1199.99, "currency": "ZAR", "cycle": "month"}
+      ]
+    }
+  ],
+  "News & Media": [
+    {
+      "name": "News24",
+      "logo": "https://logo.clearbit.com/news24.com",
+      "tiers": [
+        {"name": "Monthly", "price": 109, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 1049, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Sunday Times (TimesLIVE)",
+      "logo": "https://logo.clearbit.com/sundaytimes.co.za",
+      "tiers": [
+        {"name": "Day Pass (24h)", "price": 30, "currency": "ZAR", "cycle": "day"},
+        {"name": "Digital Monthly", "price": 80, "currency": "ZAR", "cycle": "month"},
+        {"name": "Print + Digital Monthly", "price": 110, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "Mail & Guardian",
+      "logo": "https://logo.clearbit.com/mg.co.za",
+      "tiers": [
+        {"name": "Digital Monthly", "price": 99, "currency": "ZAR", "cycle": "month"},
+        {"name": "Digital Quarterly", "price": 250, "currency": "ZAR", "cycle": "quarter"},
+        {"name": "Digital Annual", "price": 980, "currency": "ZAR", "cycle": "year"},
+        {"name": "Digital+Print Monthly", "price": 165, "currency": "ZAR", "cycle": "month"},
+        {"name": "Digital+Print Annual", "price": 1499, "currency": "ZAR", "cycle": "year"}
+      ]
+    }
+  ],
+  "Car Subscriptions": [
+    {
+      "name": "Pledge",
+      "logo": "https://logo.clearbit.com/getpledge.co",
+      "tiers": [
+        {"name": "Compact SUV", "price": 12000, "currency": "ZAR", "cycle": "month"},
+        {"name": "Small Hatchback", "price": 8000, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "Cactop",
+      "logo": "https://logo.clearbit.com/cactop.co.za",
+      "tiers": [
+        {"name": "Sedan Subscription", "price": 15000, "currency": "ZAR", "cycle": "month"}
+      ]
+    }
+  ],
+  "Mobile Data": [
+    {
+      "name": "Vodacom",
+      "logo": "https://logo.clearbit.com/vodacom.co.za",
+      "tiers": [
+        {"name": "240 MB (24h)", "price": 29, "currency": "ZAR", "cycle": "day"},
+        {"name": "420 MB (24h)", "price": 49, "currency": "ZAR", "cycle": "day"},
+        {"name": "10GB + 10GB (Night, 30d)", "price": 299, "currency": "ZAR", "cycle": "month"},
+        {"name": "20GB + 20GB (Night, 30d)", "price": 399, "currency": "ZAR", "cycle": "month"}
+      ]
+    },
+    {
+      "name": "MTN",
+      "logo": "https://logo.clearbit.com/mtn.com",
+      "tiers": [
+        {"name": "Prepaid Data Plans", "price": "variable", "currency": "ZAR", "cycle": ""}
+      ]
+    },
+    {
+      "name": "Cell C",
+      "logo": "https://logo.clearbit.com/cellc.co.za",
+      "tiers": [
+        {"name": "Prepaid Data Plans", "price": "variable", "currency": "ZAR", "cycle": ""}
+      ]
+    },
+    {
+      "name": "Telkom",
+      "logo": "https://logo.clearbit.com/telkom.co.za",
+      "tiers": [
+        {"name": "Prepaid Data Plans", "price": "variable", "currency": "ZAR", "cycle": ""}
+      ]
+    }
+  ],
+  "Developer Tools": [
+    {
+      "name": "GitHub Copilot",
+      "logo": "https://logo.clearbit.com/github.com",
+      "tiers": [
+        {"name": "Copilot Pro (Monthly)", "price": 185, "currency": "ZAR", "cycle": "month"},
+        {"name": "Copilot Pro (Annual)", "price": 1850, "currency": "ZAR", "cycle": "year"},
+        {"name": "Copilot Pro+ (Monthly)", "price": 722, "currency": "ZAR", "cycle": "month"},
+        {"name": "Copilot Pro+ (Annual)", "price": 7220, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Atlassian (Jira)",
+      "logo": "https://logo.clearbit.com/atlassian.com",
+      "tiers": [
+        {"name": "Free", "price": 0, "currency": "ZAR", "cycle": "month"},
+        {"name": "Standard (per user/month)", "price": 139, "currency": "ZAR", "cycle": "month"},
+        {"name": "Premium (per user/month)", "price": 250, "currency": "ZAR", "cycle": "month"}
+      ]
+    }
+  ],
+  "Health & Fitness": [
+    {
+      "name": "Apple Fitness+",
+      "logo": "https://logo.clearbit.com/apple.com",
+      "tiers": [
+        {"name": "Monthly", "price": 36.99, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 179.99, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Strava",
+      "logo": "https://logo.clearbit.com/strava.com",
+      "tiers": [
+        {"name": "Monthly", "price": 147.82, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 1119.82, "currency": "ZAR", "cycle": "year"}
+      ]
+    },
+    {
+      "name": "Fitbit Premium",
+      "logo": "https://logo.clearbit.com/fitbit.com",
+      "tiers": [
+        {"name": "Monthly", "price": 184.65, "currency": "ZAR", "cycle": "month"},
+        {"name": "Annual", "price": 1476, "currency": "ZAR", "cycle": "year"}
+      ]
+    }
+  ]
+}

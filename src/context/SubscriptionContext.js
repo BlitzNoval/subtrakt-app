@@ -1,13 +1,14 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import { subscriptionService } from '../utils/SubscriptionService';
 
-// Initial state with some sample data
+// Initial state with enhanced sample data
 const initialState = {
   subscriptions: [
     {
       id: 1,
-      name: 'Netflix',
-      cost: '199',
-      price: 'R 199',
+      name: 'Netflix - Standard',
+      cost: '179',
+      price: 'R 179',
       billingCycle: 'monthly',
       category: 'Entertainment',
       importance: 'Regular',
@@ -16,13 +17,14 @@ const initialState = {
       isTrial: false,
       renewalDate: '2025-06-15',
       dateAdded: '2025-01-15T00:00:00.000Z',
-      notes: 'Family plan shared with household'
+      notes: 'Family plan shared with household',
+      logo: 'https://logo.clearbit.com/netflix.com'
     },
     {
       id: 2,
-      name: 'Spotify',
-      cost: '59',
-      price: 'R 59',
+      name: 'Spotify Premium',
+      cost: '60',
+      price: 'R 60',
       billingCycle: 'monthly',
       category: 'Entertainment',
       importance: 'Critical',
@@ -31,11 +33,12 @@ const initialState = {
       isTrial: false,
       renewalDate: '2025-06-10',
       dateAdded: '2025-02-01T00:00:00.000Z',
-      notes: 'Premium individual plan'
+      notes: 'Premium individual plan',
+      logo: 'https://logo.clearbit.com/spotify.com'
     },
     {
       id: 3,
-      name: 'Adobe Creative Cloud',
+      name: 'Adobe Creative Cloud - All Apps',
       cost: '679',
       price: 'R 679',
       billingCycle: 'monthly',
@@ -47,7 +50,8 @@ const initialState = {
       trialEndDate: '2025-06-30',
       renewalDate: '2025-06-30',
       dateAdded: '2025-05-01T00:00:00.000Z',
-      notes: 'Free trial - decide before it ends'
+      notes: 'Free trial - decide before it ends',
+      logo: 'https://logo.clearbit.com/adobe.com'
     }
   ],
   loading: false,
@@ -163,6 +167,23 @@ const generateId = () => {
   return Date.now() + Math.random();
 };
 
+// Logo URL helper with fallback
+const getLogoUrl = (subscription) => {
+  // If logo is provided, use it
+  if (subscription.logo) {
+    return subscription.logo;
+  }
+  
+  // Try to find logo from service data
+  const matchedService = subscriptionService.getServiceByName(subscription.name);
+  if (matchedService && matchedService.logo) {
+    return matchedService.logo;
+  }
+  
+  // Fallback to generated avatar
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(subscription.name)}&background=74b9ff&color=fff&size=40`;
+};
+
 // Create context
 const SubscriptionContext = createContext();
 
@@ -204,14 +225,20 @@ export const SubscriptionProvider = ({ children }) => {
     dispatch({ type: ActionTypes.SET_BUDGET_LIMIT, payload: limit });
   };
 
-  // Mock API calls - now work with local state
+  // Mock API calls - now work with local state and enhanced with logo handling
   const fetchSubscriptions = async () => {
     setLoading(true);
     try {
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 500));
-      // Data is already in state, just trigger recalculation
-      dispatch({ type: ActionTypes.SET_SUBSCRIPTIONS, payload: state.subscriptions });
+      
+      // Enhance existing subscriptions with logos
+      const enhancedSubscriptions = state.subscriptions.map(sub => ({
+        ...sub,
+        logo: getLogoUrl(sub)
+      }));
+      
+      dispatch({ type: ActionTypes.SET_SUBSCRIPTIONS, payload: enhancedSubscriptions });
     } catch (error) {
       setError('Failed to fetch subscriptions');
       console.error('Error fetching subscriptions:', error);
@@ -231,6 +258,7 @@ export const SubscriptionProvider = ({ children }) => {
         id: subscriptionData.id || generateId(),
         dateAdded: subscriptionData.dateAdded || new Date().toISOString(),
         price: `R ${subscriptionData.cost}`,
+        logo: subscriptionData.logo || getLogoUrl(subscriptionData)
       };
       
       if (subscriptionData.id) {
@@ -243,7 +271,6 @@ export const SubscriptionProvider = ({ children }) => {
     } catch (error) {
       setError('Failed to save subscription');
       console.error('Error saving subscription:', error);
-      throw error; // Re-throw so the modal can handle it
     } finally {
       setLoading(false);
     }
@@ -263,6 +290,19 @@ export const SubscriptionProvider = ({ children }) => {
     }
   };
 
+  // Enhanced subscription helper functions
+  const getSubscriptionLogo = (subscription) => {
+    return getLogoUrl(subscription);
+  };
+
+  const searchAvailableServices = (query) => {
+    return subscriptionService.searchServices(query);
+  };
+
+  const getAvailableCategories = () => {
+    return subscriptionService.getCategories();
+  };
+
   const value = {
     ...state,
     // Actions
@@ -276,7 +316,11 @@ export const SubscriptionProvider = ({ children }) => {
     // API calls
     fetchSubscriptions,
     saveSubscription,
-    removeSubscription
+    removeSubscription,
+    // Helper functions
+    getSubscriptionLogo,
+    searchAvailableServices,
+    getAvailableCategories
   };
 
   return (

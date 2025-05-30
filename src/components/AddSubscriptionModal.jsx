@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSubscriptions } from '../context/SubscriptionContext';
+import { subscriptionService } from '../utils/SubscriptionService';
 import '../styles/Subscriptions.css'; 
 import '../styles/Modal.css'; 
 
@@ -18,8 +19,17 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
     isTrial: false,
     trialEndDate: '',
     renewalDate: '',
-    notes: ''
+    notes: '',
+    logo: ''
   });
+
+  // Search and dropdown states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
+  const searchInputRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   // Validation errors state
   const [errors, setErrors] = useState({});
@@ -33,8 +43,37 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
         cost: subscription.price?.replace(/[^\d.]/g, '') || '',
         isTrial: subscription.isTrial || subscription.price === 'Free Trial'
       });
+      setSearchQuery(subscription.name);
     }
   }, [subscription]);
+
+  // Handle search input changes
+  useEffect(() => {
+    if (searchQuery.length >= 1) {
+      const results = subscriptionService.searchServices(searchQuery);
+      setSearchResults(results);
+      setShowDropdown(results.length > 0);
+    } else {
+      setSearchResults([]);
+      setShowDropdown(false);
+    }
+  }, [searchQuery]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current && 
+        !dropdownRef.current.contains(event.target) &&
+        !searchInputRef.current.contains(event.target)
+      ) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Validation rules
   const validateForm = () => {
@@ -84,6 +123,35 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
     }
   };
 
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    setFormData(prev => ({ ...prev, name: value }));
+    setSelectedService(null);
+    
+    // Clear name error when typing
+    if (errors.name) {
+      setErrors(prev => ({ ...prev, name: '' }));
+    }
+  };
+
+  const handleServiceSelect = (service) => {
+    setSelectedService(service);
+    setSearchQuery(service.fullName);
+    setFormData(prev => ({
+      ...prev,
+      name: service.fullName,
+      cost: service.price.toString(),
+      category: service.category,
+      billingCycle: service.cycle === 'month' ? 'monthly' : 
+                   service.cycle === 'year' ? 'yearly' : 
+                   service.cycle === 'day' ? 'daily' : 'monthly',
+      logo: service.logo
+    }));
+    setShowDropdown(false);
+    setSearchResults([]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -102,10 +170,7 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
     }
   };
 
-  const categories = [
-    'Entertainment', 'Productivity', 'Business', 'Health & Fitness',
-    'Education', 'News & Media', 'Cloud Storage', 'Software', 'Gaming', 'Other'
-  ];
+  const categories = subscriptionService.getCategories();
 
   const importanceLevels = [
     { value: 'Critical', color: '#2563eb', description: 'Essential for work/life' },
@@ -143,15 +208,81 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
             <div className="tab-content">
               <div className="form-group">
                 <label htmlFor="name">Subscription Name *</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="e.g., Netflix, Spotify, Adobe"
-                  className={errors.name ? 'error' : ''}
-                />
+                <div className="search-container" style={{ position: 'relative' }}>
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onFocus={() => searchResults.length > 0 && setShowDropdown(true)}
+                    placeholder="Search for a service (e.g., Netflix, Spotify...)"
+                    className={errors.name ? 'error' : ''}
+                    autoComplete="off"
+                  />
+                  
+                  {/* Search Results Dropdown */}
+                  {showDropdown && searchResults.length > 0 && (
+                    <div 
+                      ref={dropdownRef}
+                      className="search-dropdown"
+                      style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: 0,
+                        right: 0,
+                        background: 'white',
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                        zIndex: 1000,
+                        maxHeight: '200px',
+                        overflowY: 'auto'
+                      }}
+                    >
+                      {searchResults.map((service, index) => (
+                        <div
+                          key={service.id}
+                          onClick={() => handleServiceSelect(service)}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: '12px',
+                            cursor: 'pointer',
+                            borderBottom: index < searchResults.length - 1 ? '1px solid #f3f4f6' : 'none',
+                            transition: 'background 0.2s ease'
+                          }}
+                          onMouseEnter={(e) => e.target.style.background = '#f9fafb'}
+                          onMouseLeave={(e) => e.target.style.background = 'white'}
+                        >
+                          <img
+                            src={subscriptionService.getLogoUrl(service)}
+                            alt={service.name}
+                            style={{
+                              width: '32px',
+                              height: '32px',
+                              borderRadius: '6px',
+                              marginRight: '12px',
+                              objectFit: 'cover'
+                            }}
+                            onError={(e) => {
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(service.name)}&background=74b9ff&color=fff&size=32`;
+                            }}
+                          />
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontWeight: '600', fontSize: '14px', color: '#2c3e50' }}>
+                              {service.fullName}
+                            </div>
+                            <div style={{ fontSize: '12px', color: '#6b7280' }}>
+                              {subscriptionService.formatPrice(service)} • {service.category}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 {errors.name && <span className="error-message">{errors.name}</span>}
               </div>
 
@@ -180,9 +311,10 @@ const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
                     value={formData.billingCycle}
                     onChange={handleInputChange}
                   >
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
                     <option value="monthly">Monthly</option>
                     <option value="yearly">Yearly</option>
-                    <option value="weekly">Weekly</option>
                   </select>
                 </div>
               </div>
