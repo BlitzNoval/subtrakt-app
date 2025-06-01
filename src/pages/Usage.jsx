@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import {
@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 const Usage = () => {
-  const { subscriptions } = useSubscriptions();
+  const { subscriptions, getSubscriptionLogo } = useSubscriptions();
   const [sortOrder, setSortOrder] = useState('highest');
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
@@ -36,6 +36,33 @@ const Usage = () => {
     priceRange: '',
     billingCycle: ''
   });
+  const [pageLoading, setPageLoading] = useState(true);
+  const [insightsLoading, setInsightsLoading] = useState(false);
+
+  // Simulate initial page load
+  useEffect(() => {
+    const loadUsageData = async () => {
+      setPageLoading(true);
+      // Simulate fetching usage analytics
+      await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 300));
+      setPageLoading(false);
+    };
+    
+    loadUsageData();
+  }, []);
+
+  // Simulate insights recalculation
+  useEffect(() => {
+    const recalculateInsights = async () => {
+      if (!pageLoading) {
+        setInsightsLoading(true);
+        await new Promise(resolve => setTimeout(resolve, 400));
+        setInsightsLoading(false);
+      }
+    };
+    
+    recalculateInsights();
+  }, [sortOrder, filters, searchTerm]);
 
   // Convert usage frequency to hours per month for comparison
   const getMonthlyUsageHours = (sub) => {
@@ -194,6 +221,11 @@ const Usage = () => {
   const categories = [...new Set(subscriptions.map(sub => sub.category))].filter(Boolean);
   const importanceLevels = ['Critical', 'Regular', 'Optional'];
 
+  // Get service initials for fallback
+  const getServiceInitials = (name) => {
+    return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
+  };
+
   const doughnutOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -248,6 +280,17 @@ const Usage = () => {
     }
   };
 
+  if (pageLoading) {
+    return (
+      <div className="usage-page">
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Analyzing usage patterns...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="usage-page">
       <div className="page-header">
@@ -288,9 +331,39 @@ const Usage = () => {
                 return (
                   <div key={sub.id} className="usage-item">
                     <div className="usage-icon" style={{ 
-                      backgroundColor: getCategoryColor(sub.category) 
+                      background: 'transparent',
+                      padding: '0'
                     }}>
-                      {sub.name.substring(0, 2).toUpperCase()}
+                      <img
+                        src={getSubscriptionLogo(sub)}
+                        alt={sub.name}
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '8px',
+                          objectFit: 'cover'
+                        }}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      <div 
+                        style={{
+                          display: 'none',
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '8px',
+                          backgroundColor: getCategoryColor(sub.category),
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontWeight: 'bold',
+                          fontSize: '14px'
+                        }}
+                      >
+                        {getServiceInitials(sub.name)}
+                      </div>
                     </div>
                     <div className="usage-details">
                       <h4>{sub.name}</h4>
@@ -344,7 +417,12 @@ const Usage = () => {
           {/* Insights */}
           <div className="insights-section">
             <h3>Usage Insights</h3>
-            {insights.length > 0 ? (
+            {insightsLoading ? (
+              <div className="insights-loading">
+                <div className="loading-spinner"></div>
+                <p>Generating personalized insights...</p>
+              </div>
+            ) : insights.length > 0 ? (
               insights.map((insight, index) => (
                 <div key={index} className={`insight-card ${insight.type}`}>
                   <div className="insight-icon">{insight.icon}</div>
@@ -380,6 +458,9 @@ const getCategoryColor = (category) => {
     'Health & Fitness': '#1abc9c',
     'News & Media': '#e67e22',
     'Business': '#34495e',
+    'Developer Tools': '#8e44ad',
+    'Car Subscriptions': '#2c3e50',
+    'Mobile Data': '#16a085',
     'Other': '#95a5a6'
   };
   return colors[category] || '#3498db';

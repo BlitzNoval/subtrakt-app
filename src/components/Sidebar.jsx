@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, screenSize }) => {
   const location = useLocation();
 
   const navItems = [
@@ -13,8 +13,12 @@ const Sidebar = () => {
     { path: '/settings', label: 'Settings' }
   ];
 
+  const sidebarClasses = screenSize?.breakpoint === 'xs' 
+    ? `sidebar ${isOpen ? 'active' : ''}`
+    : 'sidebar';
+
   return (
-    <div className="sidebar">
+    <div className={sidebarClasses}>
       <div className="sidebar-header">
         <h2>Subtrakt</h2>
       </div>

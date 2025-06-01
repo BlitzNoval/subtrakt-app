@@ -10,7 +10,20 @@
   </head>
   <body>
     <noreply>
-    
+    <!-- Add this SVG filter inside the <body> tag of your index.html -->
+<svg class="colorblind-filter">
+  <defs>
+    <filter id="colorblind-filter">
+      <!-- Deuteranopia simulation matrix -->
+      <feColorMatrix
+        type="matrix"
+        values="0.625 0.375 0 0 0
+                0.7   0.3   0 0 0
+                0     0.3   0.7 0 0
+                0     0     0 1 0" />
+    </filter>
+  </defs>
+</svg>
     </noreply>    <div id="root"></div>
   </body>
 </html>

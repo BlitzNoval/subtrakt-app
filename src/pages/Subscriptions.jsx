@@ -14,7 +14,8 @@ const Subscriptions = () => {
     loading,
     fetchSubscriptions,
     saveSubscription,
-    removeSubscription
+    removeSubscription,
+    getSubscriptionLogo
   } = useSubscriptions();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,10 +30,19 @@ const Subscriptions = () => {
     priceRange: '',
     billingCycle: ''
   });
+  const [pageLoading, setPageLoading] = useState(true);
   const actionMenuRef = useRef(null);
 
   useEffect(() => {
-    fetchSubscriptions();
+    // Simulate page loading
+    const loadPage = async () => {
+      setPageLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 400));
+      fetchSubscriptions();
+      setPageLoading(false);
+    };
+    
+    loadPage();
   }, []);
 
   useEffect(() => {
@@ -117,6 +127,9 @@ const Subscriptions = () => {
       'Health & Fitness': '#1abc9c',
       'News & Media': '#e67e22',
       'Business': '#34495e',
+      'Developer Tools': '#8e44ad',
+      'Car Subscriptions': '#2c3e50',
+      'Mobile Data': '#16a085',
       'Other': '#95a5a6'
     };
     return colors[category] || '#3498db';
@@ -136,6 +149,9 @@ const Subscriptions = () => {
       'Health & Fitness': '#55efc4',
       'News & Media': '#fab1a0',
       'Business': '#636e72',
+      'Developer Tools': '#e84393',
+      'Car Subscriptions': '#2d3436',
+      'Mobile Data': '#00b894',
       'Other': '#b2bec3'
     };
     return colors[category] || '#74b9ff';
@@ -185,7 +201,7 @@ const Subscriptions = () => {
   const categories = [...new Set(subscriptions.map(sub => sub.category))].filter(Boolean);
   const importanceLevels = ['Critical', 'Regular', 'Optional'];
 
-  if (loading && subscriptions.length === 0) {
+  if (pageLoading || (loading && subscriptions.length === 0)) {
     return (
       <div className="subscriptions-page">
         <div className="loading-container">
@@ -248,8 +264,40 @@ const Subscriptions = () => {
                         <tr key={sub.id}>
                           <td>
                             <div className="service-info">
-                              <div className="service-logo" style={{ background: getCategoryColor(sub.category) }}>
-                                {getServiceInitials(sub.name)}
+                              <div className="service-logo" style={{ 
+                                background: 'transparent',
+                                padding: '0'
+                              }}>
+                                <img
+                                  src={getSubscriptionLogo(sub)}
+                                  alt={sub.name}
+                                  style={{
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '8px',
+                                    objectFit: 'cover'
+                                  }}
+                                  onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.nextSibling.style.display = 'flex';
+                                  }}
+                                />
+                                <div 
+                                  style={{
+                                    display: 'none',
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '8px',
+                                    background: getCategoryColor(sub.category),
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    fontSize: '16px'
+                                  }}
+                                >
+                                  {getServiceInitials(sub.name)}
+                                </div>
                               </div>
                               <div className="service-details">
                                 <strong>{sub.name}</strong>

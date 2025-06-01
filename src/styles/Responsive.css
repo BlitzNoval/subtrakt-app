@@ -1,0 +1,340 @@
+/* src/styles/Responsive.css */
+
+/* CSS Variables for dynamic sizing */
+:root {
+  --content-padding: 20px;
+  --sidebar-width: 250px;
+  --grid-gap: 12px;
+  --screen-width: 100vw;
+  --screen-height: 100vh;
+}
+
+/* Base responsive adjustments */
+.app {
+  display: flex;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  margin-left: var(--sidebar-width);
+  padding: var(--content-padding);
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  transition: width 0.3s ease;
+}
+
+/* Dashboard responsive grid */
+.dashboard {
+  padding: var(--content-padding);
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.dashboard-grid {
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(12, 1fr);
+  transition: gap 0.3s ease;
+}
+
+/* Prevent content cutoff on small screens */
+@media (max-width: 480px) {
+  .content {
+    margin-left: 0;
+    padding: 10px;
+  }
+  
+  .sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    z-index: 1001;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .welcome-message {
+    grid-column: 1;
+  }
+  
+  .metrics-grid {
+    grid-column: 1;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .recent-notifications,
+  .consider-cancelling,
+  .add-subscription,
+  .recent-subscriptions,
+  .quick-tips {
+    grid-column: 1;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 481px) and (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .welcome-message {
+    grid-column: 1 / 7;
+  }
+  
+  .metrics-grid {
+    grid-column: 1 / 7;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .recent-notifications {
+    grid-column: 1 / 4;
+  }
+  
+  .consider-cancelling {
+    grid-column: 4 / 7;
+  }
+  
+  .add-subscription {
+    grid-column: 1 / 4;
+  }
+  
+  .quick-tips {
+    grid-column: 4 / 7;
+  }
+  
+  .recent-subscriptions {
+    grid-column: 1 / 7;
+  }
+}
+
+/* Small laptop adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  
+  .welcome-message {
+    grid-column: 1 / 9;
+  }
+  
+  .metrics-grid {
+    grid-column: 1 / 4;
+  }
+  
+  .recent-notifications {
+    grid-column: 4 / 6;
+  }
+  
+  .consider-cancelling {
+    grid-column: 6 / 9;
+  }
+  
+  .add-subscription {
+    grid-column: 4 / 6;
+  }
+  
+  .quick-tips {
+    grid-column: 6 / 9;
+  }
+  
+  .recent-subscriptions {
+    grid-column: 1 / 6;
+  }
+}
+
+/* Large screens - increase padding and spacing */
+@media (min-width: 1441px) {
+  .dashboard {
+    max-width: 1600px;
+  }
+  
+  .page-header {
+    padding: 30px;
+  }
+  
+  .metric-card {
+    padding: 24px;
+  }
+  
+  .chart-card {
+    padding: 30px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 2560px) {
+  .dashboard {
+    max-width: 2000px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: repeat(16, 1fr);
+  }
+  
+  .welcome-message {
+    grid-column: 1 / 12;
+  }
+  
+  .metrics-grid {
+    grid-column: 1 / 6;
+  }
+  
+  .recent-notifications {
+    grid-column: 6 / 10;
+  }
+  
+  .consider-cancelling {
+    grid-column: 10 / 14;
+  }
+  
+  .add-subscription {
+    grid-column: 6 / 10;
+  }
+  
+  .quick-tips {
+    grid-column: 10 / 14;
+  }
+  
+  .recent-subscriptions {
+    grid-column: 1 / 10;
+  }
+}
+
+/* Responsive tables */
+@media (max-width: 768px) {
+  .subscriptions-table {
+    font-size: 12px;
+  }
+  
+  .subscriptions-table th,
+  .subscriptions-table td {
+    padding: 8px;
+  }
+  
+  .service-logo {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Hide less important columns on mobile */
+  .subscriptions-table th:nth-child(4),
+  .subscriptions-table td:nth-child(4),
+  .subscriptions-table th:nth-child(5),
+  .subscriptions-table td:nth-child(5) {
+    display: none;
+  }
+}
+
+/* Responsive charts */
+.chart-container,
+.pie-chart-container,
+.doughnut-container,
+.bar-container {
+  min-height: 200px;
+  max-height: 400px;
+  position: relative;
+}
+
+@media (min-width: 1440px) {
+  .chart-container,
+  .pie-chart-container,
+  .doughnut-container,
+  .bar-container {
+    min-height: 300px;
+    max-height: 500px;
+  }
+}
+
+/* Responsive modals */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-height: 95vh;
+    margin: 10px;
+  }
+  
+  .tab-content {
+    padding: 16px;
+  }
+}
+
+/* Responsive font sizes */
+@media (max-width: 768px) {
+  h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+  h3 { font-size: 16px; }
+  .welcome-text { font-size: 28px; }
+  .metric-number { font-size: 24px; }
+}
+
+@media (min-width: 1440px) {
+  h1 { font-size: 32px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 20px; }
+  .welcome-text { font-size: 40px; }
+  .metric-number { font-size: 36px; }
+}
+
+@media (min-width: 2560px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 32px; }
+  h3 { font-size: 24px; }
+  .welcome-text { font-size: 48px; }
+  .metric-number { font-size: 40px; }
+}
+
+/* Smooth transitions for all responsive changes */
+* {
+  transition: padding 0.3s ease, margin 0.3s ease, font-size 0.3s ease;
+}
+
+/* Scrollbar responsive sizing */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+@media (min-width: 1440px) {
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+}
+
+/* Mobile menu button (for sidebar toggle) */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1002;
+  width: 40px;
+  height: 40px;
+  background: #1dd1a1;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 480px) {
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -37,6 +37,33 @@ const Budget = () => {
   const [timeFrame, setTimeFrame] = useState('months');
   const [tempBudget, setTempBudget] = useState(budgetLimit);
   const [showBudgetEdit, setShowBudgetEdit] = useState(false);
+  const [pageLoading, setPageLoading] = useState(true);
+  const [chartLoading, setChartLoading] = useState(false);
+
+  // Simulate initial page load
+  useEffect(() => {
+    const loadBudgetData = async () => {
+      setPageLoading(true);
+      // Simulate fetching budget analytics
+      await new Promise(resolve => setTimeout(resolve, 400 + Math.random() * 400));
+      setPageLoading(false);
+    };
+    
+    loadBudgetData();
+  }, []);
+
+  // Simulate chart reload when timeframe changes
+  useEffect(() => {
+    const reloadCharts = async () => {
+      if (!pageLoading) {
+        setChartLoading(true);
+        await new Promise(resolve => setTimeout(resolve, 300));
+        setChartLoading(false);
+      }
+    };
+    
+    reloadCharts();
+  }, [timeFrame]);
 
   // Calculate spending data for different time frames
   const getSpendingData = () => {
@@ -129,9 +156,13 @@ const Budget = () => {
   const budgetPercentage = (totalMonthlySpent / budgetLimit) * 100;
   const isOverBudget = totalMonthlySpent > budgetLimit;
 
-  const handleBudgetSave = () => {
+  const handleBudgetSave = async () => {
+    setChartLoading(true);
+    // Simulate API call to save budget
+    await new Promise(resolve => setTimeout(resolve, 500));
     setBudgetLimit(tempBudget);
     setShowBudgetEdit(false);
+    setChartLoading(false);
   };
 
   const spendingChartData = getSpendingData();
@@ -198,6 +229,17 @@ const Budget = () => {
     }
   };
 
+  if (pageLoading) {
+    return (
+      <div className="budget-page">
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Analyzing your spending patterns...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="budget-page">
       <div className="page-header">
@@ -229,7 +271,14 @@ const Budget = () => {
         <div className="chart-card spending-chart">
           <h3>Spending Over Time</h3>
           <div className="chart-container">
-            <Line data={lineChartData} options={lineChartOptions} />
+            {chartLoading ? (
+              <div className="chart-loading">
+                <div className="loading-spinner"></div>
+                <p>Updating chart...</p>
+              </div>
+            ) : (
+              <Line data={lineChartData} options={lineChartOptions} />
+            )}
           </div>
         </div>
 
@@ -237,7 +286,14 @@ const Budget = () => {
         <div className="chart-card category-chart">
           <h3>Spending by Category</h3>
           <div className="pie-chart-container">
-            <Doughnut data={getCategorySpending()} options={pieChartOptions} />
+            {chartLoading ? (
+              <div className="chart-loading">
+                <div className="loading-spinner"></div>
+                <p>Calculating categories...</p>
+              </div>
+            ) : (
+              <Doughnut data={getCategorySpending()} options={pieChartOptions} />
+            )}
           </div>
         </div>
 
@@ -248,6 +304,7 @@ const Budget = () => {
             <button 
               className="edit-budget-btn"
               onClick={() => setShowBudgetEdit(!showBudgetEdit)}
+              disabled={chartLoading}
             >
               {showBudgetEdit ? 'Cancel' : 'Edit'}
             </button>

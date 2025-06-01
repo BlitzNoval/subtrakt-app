@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SubscriptionProvider } from './context/SubscriptionContext';
+import { useResponsive } from './utils/ResponsiveManager';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Subscriptions from './pages/Subscriptions';
@@ -9,34 +10,53 @@ import Usage from './pages/Usage';
 import Settings from './pages/Settings';
 import LoginForm from './pages/LoginForm';
 import './styles/App.css'; 
-import './styles/DarkMode.css'; 
+import './styles/DarkMode.css';
+import './styles/Responsive.css';
+
+function AppContent() {
+  const screenSize = useResponsive();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  return (
+    <Router>
+      <Routes>
+        {/* Login route without sidebar */}
+        <Route path="/login" element={<LoginForm />} />
+        
+        {/* Main app routes with sidebar */}
+        <Route path="/*" element={
+          <div className="app" data-screen-size={screenSize.breakpoint}>
+            {screenSize.breakpoint === 'xs' && (
+              <button className="mobile-menu-btn" onClick={toggleSidebar}>
+                ☰
+              </button>
+            )}
+            <Sidebar isOpen={sidebarOpen} screenSize={screenSize} />
+            <div className="content">
+              <Routes>
+                <Route path="/" element={<Dashboard screenSize={screenSize} />} />
+                <Route path="/dashboard" element={<Dashboard screenSize={screenSize} />} />
+                <Route path="/subscriptions" element={<Subscriptions screenSize={screenSize} />} />
+                <Route path="/budget" element={<Budget screenSize={screenSize} />} />
+                <Route path="/usage" element={<Usage screenSize={screenSize} />} />
+                <Route path="/settings" element={<Settings screenSize={screenSize} />} />
+              </Routes>
+            </div>
+          </div>
+        } />
+      </Routes>
+    </Router>
+  );
+}
 
 function App() {
   return (
     <SubscriptionProvider>
-      <Router>
-        <Routes>
-          {/* Login route without sidebar */}
-          <Route path="/login" element={<LoginForm />} />
-          
-          {/* Main app routes with sidebar */}
-          <Route path="/*" element={
-            <div className="app">
-              <Sidebar />
-              <div className="content">
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/subscriptions" element={<Subscriptions />} />
-                  <Route path="/budget" element={<Budget />} />
-                  <Route path="/usage" element={<Usage />} />
-                  <Route path="/settings" element={<Settings />} />
-                </Routes>
-              </div>
-            </div>
-          } />
-        </Routes>
-      </Router>
+      <AppContent />
     </SubscriptionProvider>
   );
 }
