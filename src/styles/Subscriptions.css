@@ -190,6 +190,18 @@
   gap: 12px;
 }
 
+.service-link {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.service-link:hover .service-details strong {
+  color: #1dd1a1;
+}
+
+
+
 .service-logo {
   width: 40px;
   height: 40px;
@@ -326,6 +338,19 @@
   background: #f3f4f6;
 }
 
+
+/* Action menu link */
+.action-menu-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.action-menu-link button {
+  width: 100%;
+}
+
+
 /* METRICS CARDS */
 .metric-card {
   background: white;
@@ -406,3 +431,4 @@
     flex: 1;
   }
 }
+

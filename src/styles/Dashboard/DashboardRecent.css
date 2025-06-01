@@ -8,7 +8,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   min-height: 180px;
 }
-
 .section-header {
   background: #1dd1a1;
   color: white;
@@ -16,6 +15,11 @@
   font-weight: 600;
   font-size: 16px;
   text-align: center;
+}
+
+.subscription-item-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .subscriptions-grid {

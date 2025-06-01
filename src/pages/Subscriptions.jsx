@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import AddSubscriptionModal from '../components/AddSubscriptionModal';
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
@@ -263,48 +264,50 @@ const Subscriptions = () => {
                       {filteredSubscriptions.map((sub) => (
                         <tr key={sub.id}>
                           <td>
-                            <div className="service-info">
-                              <div className="service-logo" style={{ 
-                                background: 'transparent',
-                                padding: '0'
-                              }}>
-                                <img
-                                  src={getSubscriptionLogo(sub)}
-                                  alt={sub.name}
-                                  style={{
-                                    width: '40px',
-                                    height: '40px',
-                                    borderRadius: '8px',
-                                    objectFit: 'cover'
-                                  }}
-                                  onError={(e) => {
-                                    e.target.style.display = 'none';
-                                    e.target.nextSibling.style.display = 'flex';
-                                  }}
-                                />
-                                <div 
-                                  style={{
-                                    display: 'none',
-                                    width: '40px',
-                                    height: '40px',
-                                    borderRadius: '8px',
-                                    background: getCategoryColor(sub.category),
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: 'white',
-                                    fontWeight: 'bold',
-                                    fontSize: '16px'
-                                  }}
-                                >
-                                  {getServiceInitials(sub.name)}
-                                </div>
-                              </div>
-                              <div className="service-details">
-                                <strong>{sub.name}</strong>
-                                <small>{sub.billingCycle || 'Monthly'}</small>
-                              </div>
-                            </div>
-                          </td>
+  <Link to={`/subscription/${sub.id}`} className="service-link">
+    <div className="service-info">
+      <div className="service-logo" style={{ 
+        background: 'transparent',
+        padding: '0'
+      }}>
+        <img
+          src={getSubscriptionLogo(sub)}
+          alt={sub.name}
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '8px',
+            objectFit: 'cover'
+          }}
+          onError={(e) => {
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'flex';
+          }}
+        />
+        <div 
+          style={{
+            display: 'none',
+            width: '40px',
+            height: '40px',
+            borderRadius: '8px',
+            background: getCategoryColor(sub.category),
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: '16px'
+          }}
+        >
+          {getServiceInitials(sub.name)}
+        </div>
+      </div>
+      <div className="service-details">
+        <strong>{sub.name}</strong>
+        <small>{sub.billingCycle || 'Monthly'}</small>
+      </div>
+    </div>
+  </Link>
+</td>
                           <td>
                             <span className="price">{sub.price}</span>
                           </td>

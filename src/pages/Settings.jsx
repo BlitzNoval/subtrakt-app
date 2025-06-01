@@ -82,9 +82,13 @@ const Settings = () => {
     
     localStorage.removeItem('userToken');
     localStorage.removeItem('userEmail');
+    localStorage.removeItem('userName');
     setIsLoggedIn(false);
     setUserEmail('');
     setLoading(false);
+    
+    // Redirect to login page
+    navigate('/login');
   };
 
   const accessibilitySettings = [
