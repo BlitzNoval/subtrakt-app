@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import '../styles/Dashboard/DashboardHeader.css';
@@ -11,6 +11,8 @@ import '../styles/Dashboard/DBResponsiveness.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+  
   const {
     loading,
     activeSubscriptions,
@@ -20,6 +22,23 @@ const Dashboard = () => {
     subscriptions,
     getSubscriptionLogo
   } = useSubscriptions();
+
+  // Get user name from localStorage on component mount
+  useEffect(() => {
+    const storedName = localStorage.getItem('userName');
+    const storedEmail = localStorage.getItem('userEmail');
+    
+    if (storedName) {
+      setUserName(storedName);
+    } else if (storedEmail) {
+      // If no name but email exists (Google login), use email prefix
+      const emailPrefix = storedEmail.split('@')[0];
+      setUserName(emailPrefix);
+    } else {
+      // Default fallback
+      setUserName('User');
+    }
+  }, []);
 
   if (loading) {
     return (
@@ -129,10 +148,10 @@ const Dashboard = () => {
       {/* Main Dashboard Grid */}
       <div className="dashboard-grid">
         
-        {/* Welcome Message - Now in the grid */}
+        {/* Welcome Message - Now with dynamic name */}
         <div className="welcome-message">
           <h2 className="welcome-text">
-            Hey Liam, welcome<br />
+            Hey {userName}, welcome<br />
             back hope you're<br />
             having a great day!
           </h2>
