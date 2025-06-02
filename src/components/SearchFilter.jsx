@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/SearchFilter.css';
+import '../styles/Global/Search.css';
+import '../styles/Global/Filter.css';
 
 const SearchFilter = ({ onSearch, onFilter, categories, importanceLevels }) => {
   const [searchTerm, setSearchTerm] = useState('');

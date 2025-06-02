@@ -1,0 +1,156 @@
+/* CARDS & PANELS */
+body.dark-mode .recent-notifications,
+body.dark-mode .consider-cancelling,
+body.dark-mode .recent-subscriptions,
+body.dark-mode .metric-card,
+body.dark-mode .chart-card,
+body.dark-mode .budget-overview-card,
+body.dark-mode .extreme-card,
+body.dark-mode .insights-section,
+body.dark-mode .settings-section {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+}
+
+body.dark-mode .notification-text h4,
+body.dark-mode .service-details h4,
+body.dark-mode .subscription-details h4,
+body.dark-mode .metric-value,
+body.dark-mode .chart-card h3,
+body.dark-mode .budget-header h3,
+body.dark-mode .usage-details h4,
+body.dark-mode .insights-section h3,
+body.dark-mode .insight-content h4,
+body.dark-mode .user-details h3,
+body.dark-mode .login-prompt h3,
+body.dark-mode .setting-info h3,
+body.dark-mode .app-info h3 {
+  color: #e5e7eb;
+}
+
+body.dark-mode .notification-text p,
+body.dark-mode .subscription-price .period,
+body.dark-mode .metric-label,
+body.dark-mode .budget-stats .label,
+body.dark-mode .usage-category,
+body.dark-mode .stat-label,
+body.dark-mode .insight-content p,
+body.dark-mode .user-details p,
+body.dark-mode .login-prompt p,
+body.dark-mode .setting-info p,
+body.dark-mode .app-info p {
+  color: #9ca3af;
+}
+
+/* TABLES */
+body.dark-mode .table-container,
+body.dark-mode .subscriptions-table {
+  background: #1a1a1a;
+}
+
+body.dark-mode .subscriptions-table th {
+  background: #0f0f0f;
+  color: #e5e7eb;
+  border-bottom-color: #2a2a2a;
+}
+
+body.dark-mode .subscriptions-table td {
+  border-bottom-color: #2a2a2a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .subscriptions-table tbody tr:hover {
+  background: #2a2a2a;
+}
+
+/* BUTTONS & INTERACTIVES */
+body.dark-mode .add-subscription {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  color: #9ca3af;
+}
+
+body.dark-mode .add-subscription:hover {
+  background: #2a2a2a;
+  border-color: #1dd1a1;
+  color: #1dd1a1;
+}
+
+body.dark-mode .actions-btn {
+  color: #9ca3af;
+}
+
+body.dark-mode .actions-btn:hover {
+  background: #2a2a2a;
+  color: #e5e7eb;
+}
+
+/* MODALS */
+body.dark-mode .modal-content {
+  background: #1a1a1a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .modal-header {
+  background: linear-gradient(135deg, #0f3d33 0%, #0a2e26 100%);
+  border-bottom-color: #2a2a2a;
+}
+
+body.dark-mode .modal-footer {
+  background: #0f0f0f;
+  border-top-color: #2a2a2a;
+}
+
+body.dark-mode .modal-footer button:first-child {
+  background: #2a2a2a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .modal-footer button:first-child:hover {
+  background: #3a3a3a;
+}
+
+body.dark-mode .tab-nav {
+  background: #0f0f0f;
+  border-bottom-color: #2a2a2a;
+}
+
+body.dark-mode .tab-nav span {
+  color: #9ca3af;
+}
+
+body.dark-mode .tab-nav span:hover {
+  color: #1dd1a1;
+  background: rgba(29, 209, 161, 0.05);
+}
+
+body.dark-mode .tab-nav span.active-tab {
+  color: #1dd1a1;
+}
+
+/* FORM COMPONENTS */
+body.dark-mode .form-group label {
+  color: #9ca3af;
+}
+
+body.dark-mode .search-input {
+  background: #0f0f0f;
+  border-color: #2a2a2a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .search-input:focus {
+  border-color: #1dd1a1;
+  background: #1a1a1a;
+}
+
+body.dark-mode .filter-button {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .filter-button:hover {
+  background: #3a3a3a;
+  border-color: #4a4a4a;
+}

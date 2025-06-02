@@ -11,8 +11,13 @@ import Usage from './pages/Usage';
 import Settings from './pages/Settings';
 import LoginForm from './pages/LoginForm';
 import './styles/App.css'; 
-import './styles/DarkMode.css';
-import './styles/Responsive.css';
+import './styles/DarkMode/ComponentsDark.css';
+import './styles/DarkMode/LayoutDark.css';
+import './styles/DarkMode/GlobalStylesDark.css';
+import './styles/Responsiveness/Responsive1.css';
+import './styles/Responsiveness/Responsive2.css';
+import './styles/Responsiveness/Responsive3.css';
+
 
 function AppContent() {
   const screenSize = useResponsive();

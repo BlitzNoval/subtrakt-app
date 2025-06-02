@@ -1,0 +1,99 @@
+/* LOGIN PAGE */
+body.dark-mode .right-section {
+  background: #0f0f0f;
+}
+
+body.dark-mode .login-card {
+  background: #1a1a1a;
+}
+
+body.dark-mode .login-header h2 {
+  color: #e5e7eb;
+}
+
+body.dark-mode .google-button {
+  background: #0f0f0f;
+  border-color: #2a2a2a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .google-button:hover {
+  background: #1a1a1a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .divider::before {
+  background: #2a2a2a;
+}
+
+body.dark-mode .divider span {
+  background: #1a1a1a;
+  color: #6b7280;
+}
+
+body.dark-mode .login-footer p {
+  color: #9ca3af;
+}
+
+/* SIDEBAR */
+body.dark-mode .sidebar {
+  background: linear-gradient(180deg, #0f3d33 0%, #0a2e26 100%);
+}
+
+body.dark-mode .sidebar-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .sidebar-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark-mode .sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+body.dark-mode .sidebar-link.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* DASHBOARD HEADER */
+body.dark-mode .top-header {
+  color: #e5e7eb;
+}
+
+body.dark-mode .logo {
+  color: #1dd1a1;
+}
+
+body.dark-mode .icon-button {
+  background: #1a1a1a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .icon-button:hover {
+  background: #2a2a2a;
+}
+
+body.dark-mode .header-divider {
+  border-bottom-color: #2a2a2a;
+}
+
+body.dark-mode .welcome-text {
+  color: #e5e7eb;
+}
+
+/* PAGE HEADERS */
+body.dark-mode .page-header {
+  background: #1a1a1a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .page-header h1 {
+  color: #e5e7eb;
+}
+
+body.dark-mode .page-header p {
+  color: #9ca3af;
+}

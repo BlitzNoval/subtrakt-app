@@ -1,0 +1,65 @@
+/* ABOUT CARD */
+.about-card {
+  grid-column: span 2;
+}
+
+.about-content {
+  margin-top: 16px;
+}
+
+.app-version {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.app-version strong {
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.app-version span {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.about-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.about-links a {
+  color: #1dd1a1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.about-links a:hover {
+  color: #10ac84;
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .account-card,
+  .about-card {
+    grid-column: span 1;
+  }
+  
+  .about-links {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+}

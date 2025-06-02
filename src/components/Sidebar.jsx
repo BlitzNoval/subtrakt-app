@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '../styles/Sidebar.css';
+import '../styles/Global/Sidebar.css';
 
 const Sidebar = ({ isOpen, screenSize }) => {
   const location = useLocation();

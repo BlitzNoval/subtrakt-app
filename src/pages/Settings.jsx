@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Settings.css';
-import '../styles/DarkMode.css';
+import '../styles/Settings/Settings.css';
+import '../styles/Settings/About.css';
+import '../styles/Settings/Account.css';
+import '../styles/Settings/Toggle.css';
+import '../styles/DarkMode/ComponentsDark.css';
+import '../styles/DarkMode/GlobalStylesDark.css';
+import '../styles/DarkMode/LayoutDark.css';
+import '../styles/Settings/DarkModeOverrides.css';
 import '../styles/Accessibility/Accessibility.css';
 import '../styles/Accessibility/AccessibilityLayout.css';
 import '../styles/Accessibility/MColorBlind.css';
 import '../styles/Accessibility/MDark.css';
 import '../styles/Accessibility/MDyslexia.css';
 import '../styles/Accessibility/MLargeText.css';
-import '../styles/LoadingStates.css';
+import '../styles/Global/LoadingStates.css';
 
 const Settings = () => {
   const navigate = useNavigate();

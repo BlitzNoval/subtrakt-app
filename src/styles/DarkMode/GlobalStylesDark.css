@@ -1,0 +1,77 @@
+/* DARK MODE BASE STYLES */
+body.dark-mode {
+  background-color: #0f0f0f;
+  color: #e5e7eb;
+}
+
+body.dark-mode .app,
+body.dark-mode .content,
+body.dark-mode .dashboard,
+body.dark-mode .subscriptions-page,
+body.dark-mode .budget-page,
+body.dark-mode .usage-page,
+body.dark-mode .settings-page {
+  background-color: #0f0f0f;
+}
+
+/* Form Elements */
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+  background: #0f0f0f;
+  border-color: #2a2a2a;
+  color: #e5e7eb;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group select:focus,
+body.dark-mode .form-group textarea:focus {
+  border-color: #1dd1a1;
+  background: #1a1a1a;
+}
+
+/* Scrollbars */
+body.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* Progress Bars */
+body.dark-mode .progress-bar {
+  background: #2a2a2a;
+}
+
+/* Selectors */
+body.dark-mode .time-frame-selector,
+body.dark-mode .sort-selector {
+  background: #1a1a1a;
+}
+
+body.dark-mode .time-frame-selector button,
+body.dark-mode .sort-selector button {
+  color: #9ca3af;
+}
+
+body.dark-mode .time-frame-selector button:hover,
+body.dark-mode .sort-selector button:hover {
+  color: #e5e7eb;
+}
+
+body.dark-mode .time-frame-selector button.active,
+body.dark-mode .sort-selector button.active {
+  background: #2a2a2a;
+  color: #1dd1a1;
+}

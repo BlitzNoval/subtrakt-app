@@ -1,0 +1,103 @@
+/* Large screens - increase padding and spacing */
+@media (min-width: 1441px) {
+  .dashboard {
+    max-width: 1600px;
+  }
+  
+  .page-header {
+    padding: 30px;
+  }
+  
+  .metric-card {
+    padding: 24px;
+  }
+  
+  .chart-card {
+    padding: 30px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 2560px) {
+  .dashboard {
+    max-width: 2000px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: repeat(16, 1fr);
+  }
+  
+  .welcome-message {
+    grid-column: 1 / 12;
+  }
+  
+  .metrics-grid {
+    grid-column: 1 / 6;
+  }
+  
+  .recent-notifications {
+    grid-column: 6 / 10;
+  }
+  
+  .consider-cancelling {
+    grid-column: 10 / 14;
+  }
+  
+  .add-subscription {
+    grid-column: 6 / 10;
+  }
+  
+  .quick-tips {
+    grid-column: 10 / 14;
+  }
+  
+  .recent-subscriptions {
+    grid-column: 1 / 10;
+  }
+}
+
+/* Responsive tables */
+@media (max-width: 768px) {
+  .subscriptions-table {
+    font-size: 12px;
+  }
+  
+  .subscriptions-table th,
+  .subscriptions-table td {
+    padding: 8px;
+  }
+  
+  .service-logo {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Hide less important columns on mobile */
+  .subscriptions-table th:nth-child(4),
+  .subscriptions-table td:nth-child(4),
+  .subscriptions-table th:nth-child(5),
+  .subscriptions-table td:nth-child(5) {
+    display: none;
+  }
+}
+
+/* Responsive charts */
+.chart-container,
+.pie-chart-container,
+.doughnut-container,
+.bar-container {
+  min-height: 200px;
+  max-height: 400px;
+  position: relative;
+}
+
+@media (min-width: 1440px) {
+  .chart-container,
+  .pie-chart-container,
+  .doughnut-container,
+  .bar-container {
+    min-height: 300px;
+    max-height: 500px;
+  }
+}
+
