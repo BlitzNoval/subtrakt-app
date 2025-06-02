@@ -1,0 +1,90 @@
+/* PRICING SECTION */
+.pricing-section {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.price-main {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.price-amount {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.price-period {
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.price-breakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.price-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.price-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+
+
+/* COST ANALYSIS CARD */
+.cost-analysis-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cost-analysis-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 16px 0;
+}
+
+.analysis-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.analysis-item:last-child {
+  border-bottom: none;
+}
+
+.analysis-label {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.analysis-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+}

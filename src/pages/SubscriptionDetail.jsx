@@ -3,7 +3,12 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
 import AddSubscriptionModal from '../components/AddSubscriptionModal';
-import '../styles/SubscriptionDetail.css';
+import '../styles/SubscriptionDetails/ActionDetails.css';
+import '../styles/SubscriptionDetails/DarkDetails.css';
+import '../styles/SubscriptionDetails/PricingDetails.css';
+import '../styles/SubscriptionDetails/RelatedServicesDetails.css';
+import '../styles/SubscriptionDetails/SubscriptionDetails.css';
+import '../styles/SubscriptionDetails/UsageDetails.css';
 
 const SubscriptionDetail = () => {
   const { id } = useParams();

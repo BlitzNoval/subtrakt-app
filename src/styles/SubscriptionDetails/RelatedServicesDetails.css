@@ -1,0 +1,113 @@
+/* SERVICE CARD */
+.service-card {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.service-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.service-logo-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-title h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+}
+
+.service-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.category-badge,
+.importance-badge,
+.trial-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.trial-badge {
+  background: #fef3c7;
+  color: #d97706;
+  border: 1px solid #fcd34d;
+}
+
+
+
+/* RELATED SUBSCRIPTIONS CARD */
+.related-subscriptions-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.related-subscriptions-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 16px 0;
+}
+
+.related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.related-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.related-item:hover {
+  background: #ecf0f1;
+  transform: translateX(4px);
+}
+
+.related-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.related-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.related-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.related-price {
+  font-size: 12px;
+  color: #6b7280;
+}
