@@ -2,7 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import { subscriptionService } from '../utils/SubscriptionService';
 import '../styles/Subscriptions/Subscriptions.css'; 
-import '../styles/Modal.css'; 
+import '../styles/Modals/Modal.css'; 
+import '../styles/Modals/ModalFooter.css';
+import '../styles/Modals/ModalHeader.css';
+import '../styles/Modals/AddSubForm/FormStyle.css';
+import '../styles/Modals/AddSubForm/SearchDropdown.css';
+import '../styles/Modals/AddSubForm/Tab.css';
+import '../styles/Modals/AddSubForm/ToggleSwitch.css';
 
 const AddSubscriptionModal = ({ closeModal, subscription = null }) => {
   const { saveSubscription, loading } = useSubscriptions();

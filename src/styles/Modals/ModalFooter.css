@@ -1,0 +1,43 @@
+/* MODAL FOOTER */
+.modal-footer {
+  padding: 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: #f9fafb;
+}
+
+.modal-footer button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  border: none;
+}
+
+.modal-footer button:first-child {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.modal-footer button:first-child:hover {
+  background: #d1d5db;
+}
+
+.modal-footer button.primary-button {
+  background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%);
+  color: white;
+}
+
+.modal-footer button.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(29, 209, 161, 0.3);
+}
+
+.modal-footer button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

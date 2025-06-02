@@ -1,0 +1,44 @@
+/* TAB NAVIGATION */
+.tab-nav {
+  display: flex;
+  background: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab-nav span {
+  flex: 1;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tab-nav span:hover {
+  color: #1dd1a1;
+  background: rgba(29, 209, 161, 0.05);
+}
+
+.tab-nav span.active-tab {
+  color: #1dd1a1;
+  font-weight: 600;
+}
+
+.tab-nav span.active-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #1dd1a1;
+}
+
+/* TAB CONTENT */
+.tab-content {
+  padding: 24px;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
+}

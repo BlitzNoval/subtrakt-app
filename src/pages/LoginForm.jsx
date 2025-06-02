@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/LoginForm.css';
+import '../styles/Login/Login.css';
+import '../styles/Login/LoginForm.css';
+import '../styles/Login/AnimatedBackground.css';
+import '../styles/Login/LoginFooter.css';
+import '../styles/Login/LoginForm.css';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -24,15 +28,12 @@ const generateSquares = () => {
       width: Math.random() * 100 + 100,  // Width: 40-120px
       height: Math.random() *  20 + 20,   // Height: 2-7px (thin)
       left: Math.random() * 80,
-      delay: Math.random() * 10,
+      delay: Math.random() * 0,
       duration: Math.random() * 4 + 4
     });
   }
   return squares;
 };
-
-
-
 
   const [squares] = useState(generateSquares());
 

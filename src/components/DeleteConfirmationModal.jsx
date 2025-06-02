@@ -1,9 +1,10 @@
 import React from 'react';
 import '../styles/App.css'; 
 import '../styles/Subscriptions/Subscriptions.css'; 
-import '../styles/Modal.css';
-import '../styles/DeleteModal.css';
-
+import '../styles/Modals/Modal.css';
+import '../styles/Modals/DeleteModal.css';
+import '../styles/Modals/ModalHeader.css';
+import '../styles/Modals/ModalFooter.css';
 
 const DeleteConfirmationModal = ({ onConfirm, onCancel }) => {
   return (

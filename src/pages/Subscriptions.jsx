@@ -5,7 +5,7 @@ import AddSubscriptionModal from '../components/AddSubscriptionModal';
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
 import SearchFilter from '../components/SearchFilter.jsx';
 import '../styles/Subscriptions/Subscriptions.css';
-import '../styles/Modal.css';
+import '../styles/Modals/Modal.css';
 import '../styles/Subscriptions/Subscriptions.css';
 import '../styles/Subscriptions/SubsActions.css';
 import '../styles/Subscriptions/SubsMetrics.css';

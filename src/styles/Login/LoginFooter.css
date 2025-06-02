@@ -1,0 +1,26 @@
+/* LOGIN FOOTER */
+.login-footer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.login-footer p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #0066cc;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: color 0.2s ease;
+}
+
+.toggle-button:hover {
+  color: #0052a3;
+  text-decoration: underline;
+}

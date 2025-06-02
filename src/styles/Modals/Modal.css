@@ -1,0 +1,84 @@
+/* MODAL OVERLAY */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* MODAL CONTENT */
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Logo fallback styles */
+.logo-fallback {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #74b9ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* Dark mode support for dropdown */
+body.dark-mode .search-dropdown {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .search-dropdown-item {
+  border-bottom-color: #3a3a3a;
+}
+
+body.dark-mode .search-dropdown-item:hover {
+  background: #3a3a3a;
+}
+
+body.dark-mode .search-dropdown-name {
+  color: #e5e7eb;
+}
+
+body.dark-mode .search-dropdown-meta {
+  color: #9ca3af;
+}
