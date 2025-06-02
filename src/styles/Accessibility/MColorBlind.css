@@ -1,0 +1,71 @@
+/* COLOR BLIND MODE */
+body.colorblind-mode {
+  filter: url('#colorblind-filter');
+}
+
+/* Deuteranopia filter (red-green color blindness) */
+body.colorblind-mode svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* Override specific colors for better contrast */
+body.colorblind-mode .metric-card.active-subs {
+  background: linear-gradient(135deg, #5a5a5a 0%, #3a3a3a 100%);
+}
+
+body.colorblind-mode .metric-card.total-spent {
+  background: linear-gradient(135deg, #4a7c59 0%, #2d5436 100%);
+}
+
+body.colorblind-mode .metric-card.new-subs {
+  background: linear-gradient(135deg, #8b6f47 0%, #5c4a31 100%);
+}
+
+body.colorblind-mode .metric-card.free-trials {
+  background: linear-gradient(135deg, #6b5b95 0%, #483d6b 100%);
+}
+
+/* High contrast borders */
+body.colorblind-mode .settings-card,
+body.colorblind-mode .chart-card,
+body.colorblind-mode .metric-card,
+body.colorblind-mode .modal-content {
+  border: 2px solid #333;
+}
+
+/* Pattern overlays for better distinction */
+body.colorblind-mode .status-badge.active::after {
+  content: '✓';
+  margin-left: 4px;
+}
+
+body.colorblind-mode .status-badge.trial::after {
+  content: '⏰';
+  margin-left: 4px;
+}
+
+body.colorblind-mode .importance-critical {
+  background: #2c3e50;
+  color: white;
+  font-weight: bold;
+}
+
+body.colorblind-mode .importance-regular {
+  background: #7f8c8d;
+  color: white;
+}
+
+body.colorblind-mode .importance-optional {
+  background: #ecf0f1;
+  color: #2c3e50;
+  border: 2px dashed #7f8c8d;
+}
+
+/* SVG Filter for colorblind mode */
+.colorblind-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+}

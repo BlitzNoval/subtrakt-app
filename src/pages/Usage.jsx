@@ -12,7 +12,10 @@ import {
   ArcElement
 } from 'chart.js';
 import SearchFilter from '../components/SearchFilter';
-import '../styles/Usage.css';
+import '../styles/Usage/UsageCharts.css';
+import '../styles/Usage/Usage.css';
+import '../styles/Usage/UsageStats.css';
+import '../styles/Usage/UsageSorting.css';
 
 // Register ChartJS components
 ChartJS.register(

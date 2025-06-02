@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import { subscriptionService } from '../utils/SubscriptionService';
-import '../styles/Subscriptions.css'; 
+import '../styles/Subscriptions/Subscriptions.css'; 
 import '../styles/Modal.css'; 
 
 const AddSubscriptionModal = ({ closeModal, subscription = null }) => {

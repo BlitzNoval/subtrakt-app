@@ -4,9 +4,13 @@ import { useSubscriptions } from '../context/SubscriptionContext';
 import AddSubscriptionModal from '../components/AddSubscriptionModal';
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
 import SearchFilter from '../components/SearchFilter.jsx';
-import '../styles/Subscriptions.css';
+import '../styles/Subscriptions/Subscriptions.css';
 import '../styles/Modal.css';
-import '../styles/Subscriptions.css';
+import '../styles/Subscriptions/Subscriptions.css';
+import '../styles/Subscriptions/SubsActions.css';
+import '../styles/Subscriptions/SubsMetrics.css';
+import '../styles/Subscriptions/SubsService.css';
+import '../styles/Subscriptions/SubsTable.css';
 import '../styles/App.css';
 
 const Subscriptions = () => {

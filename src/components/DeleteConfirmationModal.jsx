@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/App.css'; 
-import '../styles/Subscriptions.css'; 
+import '../styles/Subscriptions/Subscriptions.css'; 
 import '../styles/Modal.css';
 import '../styles/DeleteModal.css';
 

@@ -1,0 +1,80 @@
+.budget-overview-card {
+  grid-column: 2 / 3;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.budget-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.edit-budget-btn {
+  padding: 6px 12px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-budget-btn:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.budget-amount {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.budget-edit {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.budget-input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.budget-input:focus {
+  outline: none;
+  border-color: #1dd1a1;
+}
+
+.save-budget-btn {
+  padding: 12px 24px;
+  background: #1dd1a1;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-budget-btn:hover {
+  background: #10ac84;
+}

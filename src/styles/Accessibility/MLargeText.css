@@ -1,0 +1,70 @@
+/* LARGE TEXT MODE */
+body.large-text-mode {
+  font-size: 18px;
+}
+
+body.large-text-mode h1 {
+  font-size: 42px;
+}
+
+body.large-text-mode h2 {
+  font-size: 36px;
+}
+
+body.large-text-mode h3 {
+  font-size: 28px;
+}
+
+body.large-text-mode h4 {
+  font-size: 22px;
+}
+
+body.large-text-mode .welcome-text {
+  font-size: 48px;
+}
+
+body.large-text-mode .metric-number {
+  font-size: 42px;
+}
+
+body.large-text-mode .metric-label {
+  font-size: 14px;
+}
+
+body.large-text-mode .sidebar {
+  width: 280px;
+}
+
+body.large-text-mode .content {
+  margin-left: 280px;
+}
+
+body.large-text-mode .sidebar-label {
+  font-size: 18px;
+}
+
+body.large-text-mode .subscriptions-table th,
+body.large-text-mode .subscriptions-table td {
+  padding: 20px;
+  font-size: 16px;
+}
+
+body.large-text-mode .form-group label {
+  font-size: 16px;
+}
+
+body.large-text-mode .form-group input,
+body.large-text-mode .form-group select,
+body.large-text-mode .form-group textarea {
+  font-size: 16px;
+  padding: 16px;
+}
+
+body.large-text-mode button {
+  font-size: 16px;
+  padding: 14px 24px;
+}
+
+body.large-text-mode .modal-content {
+  max-width: 700px;
+}

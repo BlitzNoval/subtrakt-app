@@ -1,0 +1,100 @@
+/* EMPTY STATE */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.empty-state h3 {
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  color: #6b7280;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.empty-state button {
+  background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.empty-state button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(29, 209, 161, 0.3);
+}
+
+/* SUBSCRIPTIONS TABLE */
+.subscriptions-table {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.subscriptions-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.subscriptions-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.subscriptions-table th {
+  background: #f8f9fa;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 14px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.subscriptions-table td {
+  padding: 15px;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: middle;
+}
+
+.subscriptions-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.subscriptions-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+/* Limit visible rows with scroll */
+.table-wrapper {
+  max-height: calc(100vh - 300px);
+}

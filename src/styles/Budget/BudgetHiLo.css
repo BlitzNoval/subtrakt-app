@@ -1,0 +1,54 @@
+/* SUBSCRIPTION EXTREMES */
+.subscription-extremes {
+  grid-column: 1 / 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.extreme-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.extreme-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.extreme-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.subscription-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.subscription-price {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.highest .subscription-price {
+  color: #ef4444;
+}
+
+.lowest .subscription-price {
+  color: #10b981;
+}
+
+.no-data {
+  color: #9ca3af;
+  font-style: italic;
+}

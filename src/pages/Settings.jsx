@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Settings.css';
 import '../styles/DarkMode.css';
-import '../styles/Accessibility.css';
+import '../styles/Accessibility/Accessibility.css';
+import '../styles/Accessibility/AccessibilityLayout.css';
+import '../styles/Accessibility/MColorBlind.css';
+import '../styles/Accessibility/MDark.css';
+import '../styles/Accessibility/MDyslexia.css';
+import '../styles/Accessibility/MLargeText.css';
 import '../styles/LoadingStates.css';
 
 const Settings = () => {

@@ -1,0 +1,36 @@
+/* DYSLEXIA MODE */
+body.dyslexia-mode {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', Arial, sans-serif;
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
+  line-height: 1.8;
+}
+
+body.dyslexia-mode p,
+body.dyslexia-mode span,
+body.dyslexia-mode div {
+  line-height: 1.8;
+}
+
+body.dyslexia-mode .dashboard-grid,
+body.dyslexia-mode .subscriptions-table,
+body.dyslexia-mode .usage-list {
+  font-size: 16px;
+}
+
+body.dyslexia-mode h1,
+body.dyslexia-mode h2,
+body.dyslexia-mode h3,
+body.dyslexia-mode h4 {
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+
+/* Improve readability for dyslexia */
+body.dyslexia-mode .welcome-text {
+  text-shadow: none;
+  background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

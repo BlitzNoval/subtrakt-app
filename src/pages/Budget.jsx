@@ -12,7 +12,12 @@ import {
   Legend,
   ArcElement
 } from 'chart.js';
-import '../styles/Budget.css';
+import '../styles/Budget/Budget.css';
+import '../styles/Budget/BudgetHiLo.css';
+import '../styles/Budget/BudgetOverview.css';
+import '../styles/Budget/SetBudget.css';
+import '../styles/Budget/LineChart.css';
+import '../styles/Budget/PieChart.css';
 
 // Register ChartJS components
 ChartJS.register(

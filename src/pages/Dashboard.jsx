@@ -7,6 +7,7 @@ import '../styles/Dashboard/DashboardQuickTips.css';
 import '../styles/Dashboard/DashboardRecent.css';
 import '../styles/Dashboard/DashboardMetrics.css';
 import '../styles/Dashboard/DashboardPanels.css';
+import '../styles/Dashboard/DBResponsiveness.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
