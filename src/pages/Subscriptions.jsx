@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSubscriptions } from '../context/SubscriptionContext';
 import AddSubscriptionModal from '../components/AddSubscriptionModal';
 import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
@@ -10,6 +10,7 @@ import '../styles/Subscriptions.css';
 import '../styles/App.css';
 
 const Subscriptions = () => {
+  const navigate = useNavigate();
   const {
     subscriptions,
     loading,
@@ -347,11 +348,17 @@ const Subscriptions = () => {
                             </button>
                             {openMenuId === sub.id && (
                               <div className="action-menu" ref={actionMenuRef}>
+                                <button onClick={() => {
+                                  navigate(`/subscription/${sub.id}`);
+                                  setOpenMenuId(null);
+                                }}>
+                                  📃 View Details
+                                </button>
                                 <button onClick={() => handleEdit(sub)}>
-                                  ✏️ Edit
+                                   🖋️ Edit
                                 </button>
                                 <button onClick={() => handleDelete(sub.id)}>
-                                  🗑️ Delete
+                                  ✅ Delete
                                 </button>
                               </div>
                             )}

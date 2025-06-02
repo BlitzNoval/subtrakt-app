@@ -107,11 +107,21 @@ const Dashboard = () => {
       <header className="top-header">
         <h1 className="logo">Subtrakt</h1>
         <div className="header-icons">
-          <button className="icon-button help-button">?</button>
-          <button className="icon-button profile-button">👤</button>
+          <button
+            className="icon-button help-button"
+            onClick={() => navigate('/settings')}
+          >
+            ?
+          </button>
+          <button
+            className="icon-button profile-button"
+            onClick={() => navigate('/settings')}
+          >
+            👤
+          </button>
         </div>
       </header>
-
+  
       {/* Divider Line */}
       <hr className="header-divider" />
 
