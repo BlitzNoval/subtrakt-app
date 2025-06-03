@@ -1,0 +1,127 @@
+import React from 'react';
+import AccessibilityCard from './Accessibility/AccessibilityCard';
+import '../../styles/Settings/About.css';
+import '../../styles/Settings/Account.css';
+import '../../styles/Settings/Toggle.css';
+import '../../styles/Accessibility/AccessibilityLayout.css';
+
+const AccountSection = ({ isLoggedIn, userEmail, settings, onSettingChange, onLogout, navigate }) => {
+  const accessibilitySettings = [
+    {
+      id: 'darkMode',
+      title: 'Dark Mode',
+      description: 'Reduce eye strain with a dark color scheme',
+      icon: '🌙'
+    },
+    {
+      id: 'dyslexiaMode',
+      title: 'Dyslexia-Friendly Mode',
+      description: 'Use specialized fonts and spacing for easier reading',
+      icon: '📖'
+    },
+    {
+      id: 'colorBlindMode',
+      title: 'Color Blind Mode',
+      description: 'Adjust colors for better visibility and contrast',
+      icon: '🎨'
+    },
+    {
+      id: 'largeTextMode',
+      title: 'Large Text Mode',
+      description: 'Increase text size throughout the application',
+      icon: '🔍'
+    }
+  ];
+
+  return (
+    <div className="settings-grid">
+      {/* Account Card */}
+      <div className="settings-card account-card">
+        <h3>Account</h3>
+        {isLoggedIn ? (
+          <div className="account-info">
+            <div className="user-avatar">
+              {userEmail.charAt(0).toUpperCase()}
+            </div>
+            <div className="user-details">
+              <p className="user-email">{userEmail}</p>
+              <button className="logout-btn" onClick={onLogout}>
+                Logout
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="login-prompt">
+            <p>Sign in to sync your data</p>
+            <button className="login-btn" onClick={() => navigate('/login')}>
+              Login / Sign Up
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Accessibility Settings Section */}
+      <div className="settings-section accessibility-section">
+        <h2>
+          <span className="section-icon">♿</span>
+          Accessibility Options
+        </h2>
+        <p className="section-description">
+          Customize the app to better suit your visual and reading needs
+        </p>
+        
+        <div className="accessibility-grid">
+          {accessibilitySettings.map(setting => (
+            <AccessibilityCard
+              key={setting.id}
+              setting={setting}
+              isEnabled={settings[setting.id]}
+              onToggle={(value) => onSettingChange(setting.id, value)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Display Preferences */}
+      <div className="settings-card">
+        <h3>Display Preferences</h3>
+        <div className="preference-item">
+          <div>
+            <h4>Show Totals in Headers</h4>
+            <p>Display total amounts in page headers</p>
+          </div>
+          <label className="toggle-switch">
+            <input
+              type="checkbox"
+              checked={settings.showTotals}
+              onChange={(e) => onSettingChange('showTotals', e.target.checked)}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      {/* About Card */}
+      <div className="settings-card about-card">
+        <h3>About</h3>
+        <div className="about-content">
+          <div className="app-version">
+            <strong>Subtrakt</strong>
+            <span>Version 1.0.0</span>
+          </div>
+          <div className="accessibility-info">
+            <p>🌟 Committed to making subscription management accessible for everyone</p>
+          </div>
+          <div className="about-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#support">Support</a>
+            <a href="#accessibility">Accessibility Statement</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AccountSection;
