@@ -1,0 +1,21 @@
+import React from 'react';
+import '../../../styles/Dashboard/DashboardQuickTips.css';
+
+const QuickTips = ({ navigate }) => {
+  return (
+    <div className="quick-tips">
+      <div className="tips-header">Quick Tips</div>
+      <div className="tips-icon">💡</div>
+      <div className="tips-text">
+        Spotting subscriptions you rarely use?<br />
+        Consider pausing or cancelling them —<br />
+        future you will thank you.
+      </div>
+      <button className="tips-button" onClick={() => navigate('/usage')}>
+        VIEW USAGE INSIGHTS →
+      </button>
+    </div>
+  );
+};
+
+export default QuickTips;
