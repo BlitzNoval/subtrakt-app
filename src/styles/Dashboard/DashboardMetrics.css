@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
@@ -28,37 +28,28 @@
 
 /* Metric Card Colors */
 .metric-card.active-subs {
-  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  background: rgba(134,231,232,255 ); /* Teal with 0.9 opacity */
+  border: 3px solid #169596;          /* Solid teal border */
 }
 
+
 .metric-card.total-spent {
-  background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+  background: #fecfcf;
+  border: 3px solid #e24109;
 }
 
 .metric-card.new-subs {
-  background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+   background: #d0cffe;
+  border: 3px solid #3578d6;
 }
 
 .metric-card.free-trials {
-  background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);
+   background: #feeecf;
+  border: 3px solid #ffa502;
 }
 
-/* Metric Numbers and Labels */
-.metric-number {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
 
-.metric-label {
-  font-size: 10px;
-  text-align: center;
-  line-height: 1.2;
-  opacity: 0.9;
-}
 
-.metric-icon {
-  font-size: 14px;
-  margin-bottom: 4px;
-  opacity: 0.8;
-}
+
+
+

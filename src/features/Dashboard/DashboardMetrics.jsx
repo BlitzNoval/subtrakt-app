@@ -25,8 +25,7 @@ const DashboardMetrics = ({
         <div className="metric-card active-subs">
           <div className="metric-number">{activeSubscriptions}</div>
           <div className="metric-label">
-            Active Subscriptions<br />
-            Being Tracked
+            Total Active Subscriptions
           </div>
         </div>
 

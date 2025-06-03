@@ -58,11 +58,23 @@ const MainDashboard = () => {
         <h1 className="logo">Subtrakt</h1>
         <div className="header-icons">
           <button className="icon-button help-button" onClick={() => navigate('/settings')}>
-            ?
+            <div className="centered-icon">
+            <img 
+              src="/images/Doc.png" 
+              alt="Notifications"
+            />
+          </div>
           </button>
+
           <button className="icon-button profile-button" onClick={() => navigate('/settings')}>
-            👤
-          </button>
+          <div className="centered-icon">
+            <img 
+              src="/images/User.png" 
+              alt="Notifications"
+            />
+          </div>
+        </button>
+
         </div>
       </header>
   
@@ -85,7 +97,11 @@ const MainDashboard = () => {
         />
         
         <button className="add-subscription" onClick={handleAddSubscription}>
-          <div className="add-icon">+</div>
+          <img 
+            src="/images/Add.png" 
+            alt="Notifications" 
+            className="add-icon"
+          />
           <div className="add-text">Add Subscription</div>
         </button>
 

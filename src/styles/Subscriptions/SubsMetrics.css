@@ -32,9 +32,11 @@
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.1px;
   opacity: 0.9;
   margin-bottom: 8px;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .metric-value {
@@ -47,6 +49,11 @@
   font-size: 24px;
   margin-bottom: 12px;
   opacity: 0.8;
+}
+
+.metric-number{
+  font-weight: 700;
+  margin-bottom: 1px;
 }
 
 /* LOADING */

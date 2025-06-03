@@ -6,11 +6,11 @@
   color: white;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .panel-header.blue {
-  background: #3498db;
+  background: #2671D3;
 }
 
 .panel-header.red {
@@ -24,6 +24,15 @@
     overflow: hidden;
 }
 
+.panel-header-icon {
+  height: 15px;
+  width: 15px;
+  display: inline-block;
+  position: relative;
+  top: 1px; /* Adjust this value to move it down */
+  margin-left: 10px;
+  object-fit: contain;
+}
 /* NOTIFICATION PANELS */
 .recent-notifications {
   grid-column: 5 / 9;
@@ -132,3 +141,4 @@
   font-weight: 600;
   color: #2c3e50;
 }
+

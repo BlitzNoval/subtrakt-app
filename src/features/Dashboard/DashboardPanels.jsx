@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../styles/Dashboard/DashboardPanels.css';
 
+
 const DashboardPanels = ({ subscriptions, getSubscriptionLogo, navigate }) => {
   // Get service initials for fallback
   const getServiceInitials = (name) => {
@@ -77,7 +78,12 @@ const DashboardPanels = ({ subscriptions, getSubscriptionLogo, navigate }) => {
       {/* Recent Notifications */}
       <div className="recent-notifications">
         <div className="panel-header blue">
-          Recent Notifications 🔔
+          Recent Notifications 
+          <img 
+            src="/images/Notification.png" 
+            alt="Notifications" 
+            className="panel-header-icon"
+          />
         </div>
         <div className="panel-content">
           {trialsEndingSoon.length > 0 ? (
@@ -119,7 +125,12 @@ const DashboardPanels = ({ subscriptions, getSubscriptionLogo, navigate }) => {
       {/* Consider Cancelling */}
       <div className="consider-cancelling">
         <div className="panel-header red">
-          Consider Cancelling ⚠️
+          Consider Cancelling 
+          <img 
+            src="/images/Warning.png" 
+            alt="Notifications" 
+            className="panel-header-icon"
+          />
         </div>
         <div className="panel-content">
           {cancellationCandidates.length > 0 ? (

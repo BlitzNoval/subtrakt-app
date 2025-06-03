@@ -19,7 +19,7 @@
 
 .content {
   margin-left: var(--sidebar-width);
-  padding: var(--content-padding);
+  
   flex: 1;
   height: 100vh;
   overflow-y: auto;
@@ -34,14 +34,14 @@
 
 /* Dashboard responsive grid */
 .dashboard {
-  padding: var(--content-padding);
+  
   max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
 .dashboard-grid {
-  gap: var(--grid-gap);
+  
   grid-template-columns: repeat(12, 1fr);
   transition: gap 0.3s ease;
 }

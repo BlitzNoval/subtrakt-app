@@ -2,28 +2,30 @@
 .quick-tips {
   grid-column: 9 / 13;
   grid-row: 3 / 5;
-  background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%);
+  background: #169596;
   border-radius: 12px;
   padding: 30px;
-  color: white;
+  color: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  min-height: 380px;
+  min-height: 430px;
 }
 
 .tips-header {
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 10px;
+  background: #169596;
+  color: white;
+  padding: 10px;
+  text-align: center;
 }
 
 .tips-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -33,14 +35,19 @@
 }
 
 .tips-text {
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 500;
   text-align: center;
   line-height: 1.4;
   margin-bottom: 10px;
+  background: #cfeaec;
+   padding: 10px;
+    border-radius: 12px;
+   
 }
 
 .tips-button {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 38, 255, 0);
   border: none;
   color: white;
   padding: 8px 16px;
@@ -53,5 +60,7 @@
 }
 
 .tips-button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  opacity: 0.9;
+  text-decoration: underline;
+  text-decoration-color: currentColor; /* Use the current text color for underline */
 }
