@@ -1,5 +1,6 @@
 import React from 'react';
 import SubscriptionDetails from './SubscriptionNotes';
+import { getCategoryColor } from '../../utils/CategoryColors';
 import '../../styles/SubscriptionDetails/PricingDetails.css';
 import '../../styles/SubscriptionDetails/RelatedServicesDetails.css';
 
@@ -13,13 +14,6 @@ const SubscriptionInfo = ({ subscription, getSubscriptionLogo }) => {
   const getImportanceColor = (importance) => {
     const colors = { 'Critical': '#2563eb', 'Regular': '#f59e0b', 'Optional': '#ef4444' };
     return colors[importance] || '#6b7280';
-  };
-
-  const getCategoryColor = (category) => {
-    const colors = {
-      'Entertainment': '#e17055', 'Software': '#f39c12', 'Gaming': '#fd79a8'
-    };
-    return colors[category] || '#74b9ff';
   };
 
   return (

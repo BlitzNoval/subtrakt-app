@@ -44,14 +44,14 @@ function AppContent() {
             <Sidebar isOpen={sidebarOpen} screenSize={screenSize} />
             <div className="content">
            <Routes>
-  <Route path="/" element={<Dashboard screenSize={screenSize} />} />
-  <Route path="/dashboard" element={<Dashboard screenSize={screenSize} />} />
-  <Route path="/subscriptions" element={<Subscriptions screenSize={screenSize} />} />
-  <Route path="/subscription/:id" element={<SubscriptionDetail screenSize={screenSize} />} />
-  <Route path="/budget" element={<Budget screenSize={screenSize} />} />
-  <Route path="/usage" element={<Usage screenSize={screenSize} />} />
-  <Route path="/settings" element={<Settings screenSize={screenSize} />} />
-</Routes>
+            <Route path="/" element={<Dashboard screenSize={screenSize} />} />
+            <Route path="/dashboard" element={<Dashboard screenSize={screenSize} />} />
+            <Route path="/subscriptions" element={<Subscriptions screenSize={screenSize} />} />
+            <Route path="/subscription/:id" element={<SubscriptionDetail screenSize={screenSize} />} />
+            <Route path="/budget" element={<Budget screenSize={screenSize} />} />
+            <Route path="/usage" element={<Usage screenSize={screenSize} />} />
+            <Route path="/settings" element={<Settings screenSize={screenSize} />} />
+          </Routes>
             </div>
           </div>
         } />

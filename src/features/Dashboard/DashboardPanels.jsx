@@ -1,43 +1,18 @@
 import React from 'react';
 import '../../styles/Dashboard/DashboardPanels.css';
-
+import { getCategoryColor, getCategoryIconColor } from '../../utils/CategoryColors';
 
 const DashboardPanels = ({ subscriptions, getSubscriptionLogo, navigate }) => {
-  // Get service initials for fallback
   const getServiceInitials = (name) => {
     return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
   };
 
-  // Get category color
-  const getCategoryColor = (category) => {
-    const colors = {
-      'Entertainment': '#1f77b4',
-      'Software': '#ff6b6b',
-      'Gaming': '#9b59b6',
-      'Cloud Storage': '#0077b5'
-    };
-    return colors[category] || '#3498db';
-  };
-
-  // Get tag color
-  const getTagColor = (category) => {
-    const colors = {
-      'Entertainment': '#e17055',
-      'Software': '#f39c12',
-      'Gaming': '#fd79a8',
-      'Cloud Storage': '#a29bfe'
-    };
-    return colors[category] || '#74b9ff';
-  };
-
-  // Get trial subscriptions ending soon
   const trialsEndingSoon = subscriptions.filter(sub => {
     if (!sub.isTrial || !sub.trialEndDate) return false;
     const daysUntilEnd = Math.ceil((new Date(sub.trialEndDate) - new Date()) / (1000 * 60 * 60 * 24));
     return daysUntilEnd <= 7 && daysUntilEnd > 0;
   }).slice(0, 2);
 
-  // Get subscriptions to consider cancelling
   const cancellationCandidates = subscriptions.filter(sub => {
     const cost = parseFloat(sub.price?.replace(/[^\d.]/g, '') || sub.cost || 0);
     const isHighCost = cost > 200;
@@ -61,7 +36,7 @@ const DashboardPanels = ({ subscriptions, getSubscriptionLogo, navigate }) => {
         width: '32px',
         height: '32px',
         borderRadius: '6px',
-        background: getCategoryColor(sub.category),
+        background: getCategoryIconColor(sub.category),
         alignItems: 'center',
         justifyContent: 'center',
         color: 'white',
@@ -142,7 +117,7 @@ const DashboardPanels = ({ subscriptions, getSubscriptionLogo, navigate }) => {
                   </div>
                   <div className="service-details">
                     <h4>{sub.name}</h4>
-                    <span className="service-tag" style={{ backgroundColor: getTagColor(sub.category) }}>
+                    <span className="service-tag" style={{ backgroundColor: getCategoryColor(sub.category) }}>
                       {sub.category}
                     </span>
                   </div>

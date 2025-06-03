@@ -1,8 +1,7 @@
 * CHARTS SECTION */
 .charts-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
@@ -15,6 +14,10 @@
   flex-direction: column;
 }
 
+.usage-distribution-card {
+  min-height: 350px;
+}
+
 .chart-card h3 {
   font-size: 16px;
   font-weight: 600;
@@ -22,11 +25,10 @@
   margin: 0 0 16px 0;
 }
 
-.doughnut-container,
-.bar-container {
+.doughnut-container {
   flex: 1;
   position: relative;
-  min-height: 250px;
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,25 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getCategoryColor, getCategoryIconColor } from '../../../utils/CategoryColors';
 
 const SubscriptionRow = ({ sub, getSubscriptionLogo, openMenuId, setOpenMenuId, onEdit, onDelete, navigate, actionMenuRef }) => {
   const getServiceInitials = (name) => {
     return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
-  };
-
-  const getCategoryColor = (category) => {
-    const colors = {
-      'Entertainment': '#1f77b4', 'Software': '#ff6b6b', 'Gaming': '#9b59b6',
-      'Cloud Storage': '#0077b5', 'Other': '#95a5a6'
-    };
-    return colors[category] || '#3498db';
-  };
-
-  const getTagColor = (category) => {
-    const colors = {
-      'Entertainment': '#e17055', 'Software': '#f39c12', 'Gaming': '#fd79a8',
-      'Cloud Storage': '#a29bfe', 'Other': '#b2bec3'
-    };
-    return colors[category] || '#74b9ff';
   };
 
   return (
@@ -39,7 +24,7 @@ const SubscriptionRow = ({ sub, getSubscriptionLogo, openMenuId, setOpenMenuId, 
               />
               <div style={{
                 display: 'none', width: '40px', height: '40px', borderRadius: '8px',
-                background: getCategoryColor(sub.category), alignItems: 'center',
+                background: getCategoryIconColor(sub.category), alignItems: 'center',
                 justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '16px'
               }}>
                 {getServiceInitials(sub.name)}
@@ -54,8 +39,8 @@ const SubscriptionRow = ({ sub, getSubscriptionLogo, openMenuId, setOpenMenuId, 
       </td>
       <td><span className="price">{sub.price}</span></td>
       <td>
-        <span className="category-badge" style={{ 
-          backgroundColor: getTagColor(sub.category), color: 'white'
+        <span className="category-badge" style={{
+          backgroundColor: getCategoryColor(sub.category), color: 'white'
         }}>{sub.category}</span>
       </td>
       <td>

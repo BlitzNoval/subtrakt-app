@@ -6,6 +6,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import { getCategoryColor, getCategoryIconColor, getChartColors } from '../../../utils/CategoryColors';
 import '../../../styles/Budget/PieChart.css';
 
 // Register ChartJS components
@@ -27,16 +28,7 @@ const CategoryChart = ({ subscriptions, chartLoading }) => {
       labels: Object.keys(categoryTotals),
       datasets: [{
         data: Object.values(categoryTotals),
-        backgroundColor: [
-          '#74b9ff',
-          '#a29bfe',
-          '#fd79a8',
-          '#fdcb6e',
-          '#6c5ce7',
-          '#00b894',
-          '#e17055',
-          '#0984e3'
-        ],
+        backgroundColor: getChartColors(Object.keys(categoryTotals)),
         borderWidth: 0
       }]
     };

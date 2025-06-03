@@ -1,0 +1,42 @@
+export const categoryColors = {
+  // Main categories
+  'Entertainment': '#e17055',
+  'Software': '#f39c12',
+  'Gaming': '#fd79a8',
+  'Cloud Storage': '#a29bfe',
+  'News & Media': '#00cec9',
+  'Car Subscriptions': '#6c5ce7',
+  'Mobile Data': '#fdcb6e',
+  'Developer Tools': '#74b9ff',
+  'Health & Fitness': '#55efc4',
+  'Other': '#b2bec3'
+};
+
+// Icon background colors (darker shades)
+export const categoryIconColors = {
+  'Entertainment': '#d63031',
+  'Software': '#e67e22',
+  'Gaming': '#e84393',
+  'Cloud Storage': '#6c5ce7',
+  'News & Media': '#00b894',
+  'Car Subscriptions': '#5f3dc4',
+  'Mobile Data': '#f39c12',
+  'Developer Tools': '#0984e3',
+  'Health & Fitness': '#00b894',
+  'Other': '#636e72'
+};
+
+// Get category color with fallback
+export const getCategoryColor = (category) => {
+  return categoryColors[category] || categoryColors['Other'];
+};
+
+// Get category icon color with fallback
+export const getCategoryIconColor = (category) => {
+  return categoryIconColors[category] || categoryIconColors['Other'];
+};
+
+// Get chart colors array for multiple categories
+export const getChartColors = (categories) => {
+  return categories.map(cat => getCategoryColor(cat));
+};

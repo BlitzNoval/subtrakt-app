@@ -1,19 +1,9 @@
 import React from 'react';
+import { getCategoryIconColor } from '../../../utils/CategoryColors';
 
 const UsageItem = ({ subscription, monthlyHours, valueScore, getSubscriptionLogo }) => {
   const getServiceInitials = (name) => {
     return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
-  };
-
-  const getCategoryColor = (category) => {
-    const colors = {
-      'Entertainment': '#1f77b4',
-      'Software': '#ff6b6b',
-      'Gaming': '#9b59b6',
-      'Health & Fitness': '#1abc9c',
-      'Other': '#95a5a6'
-    };
-    return colors[category] || '#3498db';
   };
 
   return (
@@ -33,7 +23,7 @@ const UsageItem = ({ subscription, monthlyHours, valueScore, getSubscriptionLogo
           width: '40px',
           height: '40px',
           borderRadius: '8px',
-          backgroundColor: getCategoryColor(subscription.category),
+          backgroundColor: getCategoryIconColor(subscription.category),
           alignItems: 'center',
           justifyContent: 'center',
           color: 'white',
