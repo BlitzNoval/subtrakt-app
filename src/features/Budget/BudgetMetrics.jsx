@@ -98,7 +98,11 @@ const BudgetMetrics = ({
 
       <div className="subscription-extremes">
         <div className="extreme-card highest">
-          <div className="extreme-icon">📈</div>
+           <img 
+            src="/images/Highest.png" 
+            alt="Notifications" 
+            className="extreme-icon"
+          />
           <h4>Highest Subscription</h4>
           {highest ? (
             <>
@@ -111,7 +115,11 @@ const BudgetMetrics = ({
         </div>
 
         <div className="extreme-card lowest">
-          <div className="extreme-icon">📉</div>
+           <img 
+            src="/images/Lowest.png" 
+            alt="Notifications" 
+            className="extreme-icon"
+          />
           <h4>Lowest Subscription</h4>
           {lowest ? (
             <>

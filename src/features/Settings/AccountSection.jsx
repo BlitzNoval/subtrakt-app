@@ -6,33 +6,32 @@ import '../../styles/Settings/Toggle.css';
 import '../../styles/Accessibility/AccessibilityLayout.css';
 
 const AccountSection = ({ isLoggedIn, userEmail, settings, onSettingChange, onLogout, navigate }) => {
-  const accessibilitySettings = [
-    {
-      id: 'darkMode',
-      title: 'Dark Mode',
-      description: 'Reduce eye strain with a dark color scheme',
-      icon: '🌙'
-    },
-    {
-      id: 'dyslexiaMode',
-      title: 'Dyslexia-Friendly Mode',
-      description: 'Use specialized fonts and spacing for easier reading',
-      icon: '📖'
-    },
-    {
-      id: 'colorBlindMode',
-      title: 'Color Blind Mode',
-      description: 'Adjust colors for better visibility and contrast',
-      icon: '🎨'
-    },
-    {
-      id: 'largeTextMode',
-      title: 'Large Text Mode',
-      description: 'Increase text size throughout the application',
-      icon: '🔍'
-    }
-  ];
-
+const accessibilitySettings = [
+  {
+    id: 'darkMode',
+    title: 'Dark Mode',
+    description: 'Reduce eye strain with a dark color scheme',
+    icon: '/images/Dark.png',
+  },
+  {
+    id: 'dyslexiaMode',
+    title: 'Dyslexia-Friendly',
+    description: 'Use specialized fonts and spacing for easier reading',
+    icon: '/images/dyslexia.png',
+  },
+  {
+    id: 'colorBlindMode',
+    title: 'Color Blind Mode',
+    description: 'Adjust colors for better visibility and contrast',
+    icon: '/images/ColorBlind.png',
+  },
+  {
+    id: 'largeTextMode',
+    title: 'Large Text Mode',
+    description: 'Increase text size throughout the application',
+    icon: '/images/LargeText.png',
+  },
+];
   return (
     <div className="settings-grid">
       {/* Account Card */}
@@ -40,9 +39,7 @@ const AccountSection = ({ isLoggedIn, userEmail, settings, onSettingChange, onLo
         <h3>Account</h3>
         {isLoggedIn ? (
           <div className="account-info">
-            <div className="user-avatar">
-              {userEmail.charAt(0).toUpperCase()}
-            </div>
+            <div className="user-avatar">{userEmail.charAt(0).toUpperCase()}</div>
             <div className="user-details">
               <p className="user-email">{userEmail}</p>
               <button className="logout-btn" onClick={onLogout}>
@@ -63,23 +60,31 @@ const AccountSection = ({ isLoggedIn, userEmail, settings, onSettingChange, onLo
       {/* Accessibility Settings Section */}
       <div className="settings-section accessibility-section">
         <h2>
-          <span className="section-icon">♿</span>
           Accessibility Options
         </h2>
         <p className="section-description">
           Customize the app to better suit your visual and reading needs
         </p>
-        
-        <div className="accessibility-grid">
-          {accessibilitySettings.map(setting => (
-            <AccessibilityCard
-              key={setting.id}
-              setting={setting}
-              isEnabled={settings[setting.id]}
-              onToggle={(value) => onSettingChange(setting.id, value)}
-            />
-          ))}
-        </div>
+
+       <div className="accessibility-grid">
+  {accessibilitySettings.map(setting => (
+    <AccessibilityCard
+      key={setting.id}
+      setting={{
+        ...setting,
+        icon: (
+          <img
+            src={setting.icon}
+            alt={`${setting.title} icon`}
+            className="accessibility-icon"
+          />
+        ),
+      }}
+      isEnabled={settings[setting.id]}
+      onToggle={value => onSettingChange(setting.id, value)}
+    />
+  ))}
+</div>
       </div>
 
       {/* Display Preferences */}
@@ -94,7 +99,7 @@ const AccountSection = ({ isLoggedIn, userEmail, settings, onSettingChange, onLo
             <input
               type="checkbox"
               checked={settings.showTotals}
-              onChange={(e) => onSettingChange('showTotals', e.target.checked)}
+              onChange={e => onSettingChange('showTotals', e.target.checked)}
             />
             <span className="slider"></span>
           </label>
@@ -110,8 +115,16 @@ const AccountSection = ({ isLoggedIn, userEmail, settings, onSettingChange, onLo
             <span>Version 1.0.0</span>
           </div>
           <div className="accessibility-info">
-            <p>🌟 Committed to making subscription management accessible for everyone</p>
-          </div>
+  <p>
+    <img 
+  src="/images/Star.png" 
+  alt="Notifications" 
+  className="about-icon"
+  style={{ width: '1em', height: '1em', verticalAlign: 'middle', marginRight: '0.5em' }}
+/>
+
+   Subscription management made sub-stantially easy - stress-free and simple.</p>
+</div>
           <div className="about-links">
             <a href="#privacy">Privacy Policy</a>
             <a href="#terms">Terms of Service</a>

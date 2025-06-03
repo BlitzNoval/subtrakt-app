@@ -15,9 +15,11 @@
 }
 
 .extreme-icon {
-  font-size: 32px;
+  width: 40px; /* Adjust as needed */
+  height: auto;
   margin-bottom: 12px;
 }
+
 
 .extreme-card h4 {
   font-size: 14px;
@@ -41,11 +43,11 @@
 }
 
 .highest .subscription-price {
-  color: #ef4444;
+  color: #e74c3c;
 }
 
 .lowest .subscription-price {
-  color: #10b981;
+  color: #169596;
 }
 
 .no-data {

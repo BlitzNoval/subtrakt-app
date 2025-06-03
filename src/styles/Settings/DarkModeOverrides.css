@@ -40,5 +40,5 @@ body.dark-mode .toggle-switch .slider {
 }
 
 body.dark-mode .toggle-switch input:checked + .slider {
-  background-color: #1dd1a1;
+  background-color: #169596;
 }

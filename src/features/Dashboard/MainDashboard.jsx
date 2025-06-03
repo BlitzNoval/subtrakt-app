@@ -60,7 +60,7 @@ const MainDashboard = () => {
           <button className="icon-button help-button" onClick={() => navigate('/settings')}>
             <div className="centered-icon">
             <img 
-              src="/images/User.png" 
+              src="/images/Doc.png" 
               alt="Notifications"
             />
           </div>

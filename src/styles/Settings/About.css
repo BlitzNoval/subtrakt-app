@@ -34,7 +34,7 @@
 }
 
 .about-links a {
-  color: #1dd1a1;
+  color: #169596;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -42,7 +42,7 @@
 }
 
 .about-links a:hover {
-  color: #10ac84;
+  color: #169596;
   text-decoration: underline;
 }
 
@@ -62,4 +62,10 @@
     gap: 12px;
     align-items: center;
   }
+
+  /* About Card icon */
+
+
 }
+
+

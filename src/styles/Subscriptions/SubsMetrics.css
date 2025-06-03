@@ -22,19 +22,19 @@
 
 /* Updated Pastel Color Themes */
 .metric-card.total-cost {
-  background: #fc4b4b;
+  background: #e74c3c;
   border: 2px solid #e74c3c;
   color: #fff3f3;
 }
 
 .metric-card.active-count {
-  background: #276f72;
+  background: #169596;
   border: 2px solid #17a2b8;
   color: #fff3f3;
 }
 
 .metric-card.trials-count {
-  background: #f86008;
+  background: #fd833c;
   border: 2px solid #fa8416;
   color: #fff3f3;
 }

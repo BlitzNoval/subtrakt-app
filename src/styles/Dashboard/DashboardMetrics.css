@@ -36,19 +36,19 @@
 }
 
 .metric-card.total-spent {
-  background: #e90404;
+  background: #e74c3c;
   border: 2px solid #e74c3c;
   color: #fff3f3;
 }
 
 .metric-card.new-subs {
-  background: #408adf;
+  background: #2671D3;
   border: 2px solid #3498db;
   color: #fff3f3;
 }
 
 .metric-card.free-trials {
-  background: #f86008;
+  background: #fd833c;
   border: 2px solid #fa8416;
   color: #fff3f3;
 }
