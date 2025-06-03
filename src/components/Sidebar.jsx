@@ -7,10 +7,11 @@ const Sidebar = ({ isOpen, screenSize }) => {
 
   const navItems = [
     { path: '/dashboard', label: 'Dashboard' },
-    { path: '/subscriptions', label: 'Subscriptions'},
-    { path: '/budget', label: 'Budget'},
+    { path: '/subscriptions', label: 'Subscriptions' },
+    { path: '/budget', label: 'Budget' },
     { path: '/usage', label: 'Usage' },
-    { path: '/settings', label: 'Settings' }
+    { path: '/settings', label: 'Settings' },
+    { path: '/roadmap', label: 'Roadmap' } // Updated nav item
   ];
 
   const sidebarClasses = screenSize?.breakpoint === 'xs' 

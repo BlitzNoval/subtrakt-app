@@ -18,7 +18,9 @@
   color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   border-color: #000;
+  cursor: default; /* Reinforces the default cursor on hover */
 }
+
 
 /* Updated Pastel Color Themes */
 .metric-card.total-cost {
@@ -55,7 +57,10 @@
   margin-bottom: 8px;
   text-align: center;
   line-height: 1.2;
+
 }
+
+
 
 .metric-value {
   font-size: 32px;

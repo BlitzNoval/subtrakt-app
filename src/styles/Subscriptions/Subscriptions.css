@@ -53,6 +53,7 @@
 
 .add-subscription-btn:hover {
   transform: translateY(-1px);
+   background: #1bbbbb;
   box-shadow: 0 4px 12px rgba(29, 209, 161, 0.3);
 }
 

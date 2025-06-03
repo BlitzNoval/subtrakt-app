@@ -1,64 +1,15 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { subscriptionService } from '../utils/SubscriptionService';
+import mockSubscriptions from '../utils/Mockdata';
 
-// Initial state with enhanced sample data
+// Initial state without sample data
 const initialState = {
-  subscriptions: [
-    {
-      id: 1,
-      name: 'Netflix - Standard',
-      cost: '179',
-      price: 'R 179',
-      billingCycle: 'monthly',
-      category: 'Entertainment',
-      importance: 'Regular',
-      usageHours: '15',
-      usageFrequency: 'weekly',
-      isTrial: false,
-      renewalDate: '2025-06-15',
-      dateAdded: '2025-01-15T00:00:00.000Z',
-      notes: 'Family plan shared with household',
-      logo: 'https://logo.clearbit.com/netflix.com'
-    },
-    {
-      id: 2,
-      name: 'Spotify Premium',
-      cost: '60',
-      price: 'R 60',
-      billingCycle: 'monthly',
-      category: 'Entertainment',
-      importance: 'Critical',
-      usageHours: '20',
-      usageFrequency: 'weekly',
-      isTrial: false,
-      renewalDate: '2025-06-10',
-      dateAdded: '2025-02-01T00:00:00.000Z',
-      notes: 'Premium individual plan',
-      logo: 'https://logo.clearbit.com/spotify.com'
-    },
-    {
-      id: 3,
-      name: 'Adobe Creative Cloud - All Apps',
-      cost: '679',
-      price: 'R 679',
-      billingCycle: 'monthly',
-      category: 'Software',
-      importance: 'Critical',
-      usageHours: '25',
-      usageFrequency: 'weekly',
-      isTrial: true,
-      trialEndDate: '2025-06-30',
-      renewalDate: '2025-06-30',
-      dateAdded: '2025-05-01T00:00:00.000Z',
-      notes: 'Free trial - decide before it ends',
-      logo: 'https://logo.clearbit.com/adobe.com'
-    }
-  ],
+  subscriptions: [],
   loading: false,
   error: null,
   totalMonthlySpent: 0,
   activeSubscriptions: 0,
-  budgetLimit: 1000, // Default budget limit
+  budgetLimit: 1000,
   newSubscriptionsThisMonth: 0,
   freeTrialsActive: 0
 };
@@ -71,7 +22,9 @@ const ActionTypes = {
   UPDATE_SUBSCRIPTION: 'UPDATE_SUBSCRIPTION',
   DELETE_SUBSCRIPTION: 'DELETE_SUBSCRIPTION',
   SET_ERROR: 'SET_ERROR',
-  SET_BUDGET_LIMIT: 'SET_BUDGET_LIMIT'
+  SET_BUDGET_LIMIT: 'SET_BUDGET_LIMIT',
+  RESET_SUBSCRIPTIONS: 'RESET_SUBSCRIPTIONS',
+  LOAD_MOCK_DATA: 'LOAD_MOCK_DATA'
 };
 
 // Reducer function
@@ -131,6 +84,23 @@ const subscriptionReducer = (state, action) => {
     case ActionTypes.SET_BUDGET_LIMIT:
       return { ...state, budgetLimit: action.payload };
     
+    case ActionTypes.RESET_SUBSCRIPTIONS:
+      return {
+        ...initialState,
+        subscriptions: [],
+        budgetLimit: 1000
+      };
+    
+    case ActionTypes.LOAD_MOCK_DATA:
+      return {
+        ...state,
+        subscriptions: mockSubscriptions,
+        activeSubscriptions: mockSubscriptions.length,
+        totalMonthlySpent: calculateTotalSpent(mockSubscriptions),
+        newSubscriptionsThisMonth: calculateNewSubscriptions(mockSubscriptions),
+        freeTrialsActive: calculateFreeTrials(mockSubscriptions)
+      };
+    
     default:
       return state;
   }
@@ -139,7 +109,6 @@ const subscriptionReducer = (state, action) => {
 // Helper functions
 const calculateTotalSpent = (subscriptions) => {
   return subscriptions.reduce((total, sub) => {
-    // Extract numeric value from price string (e.g., "R 50" -> 50)
     const price = parseFloat(sub.price?.replace(/[^\d.]/g, '') || sub.cost || 0);
     return total + price;
   }, 0);
@@ -169,18 +138,15 @@ const generateId = () => {
 
 // Logo URL helper with fallback
 const getLogoUrl = (subscription) => {
-  // If logo is provided, use it
   if (subscription.logo) {
     return subscription.logo;
   }
   
-  // Try to find logo from service data
   const matchedService = subscriptionService.getServiceByName(subscription.name);
   if (matchedService && matchedService.logo) {
     return matchedService.logo;
   }
   
-  // Fallback to generated avatar
   return `https://ui-avatars.com/api/?name=${encodeURIComponent(subscription.name)}&background=74b9ff&color=fff&size=40`;
 };
 
@@ -189,7 +155,23 @@ const SubscriptionContext = createContext();
 
 // Provider component
 export const SubscriptionProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(subscriptionReducer, initialState);
+  const [state, dispatch] = useReducer(subscriptionReducer, {
+    ...initialState,
+    subscriptions: (() => {
+      const savedSubscriptions = localStorage.getItem('subscriptions');
+      return savedSubscriptions ? JSON.parse(savedSubscriptions) : initialState.subscriptions;
+    })(),
+    budgetLimit: (() => {
+      const savedBudget = localStorage.getItem('budgetLimit');
+      return savedBudget ? parseFloat(savedBudget) : 1000;
+    })()
+  });
+
+  // Save to localStorage whenever subscriptions or budget change
+  useEffect(() => {
+    localStorage.setItem('subscriptions', JSON.stringify(state.subscriptions));
+    localStorage.setItem('budgetLimit', state.budgetLimit.toString());
+  }, [state.subscriptions, state.budgetLimit]);
 
   // Initialize calculations on mount
   useEffect(() => {
@@ -225,19 +207,25 @@ export const SubscriptionProvider = ({ children }) => {
     dispatch({ type: ActionTypes.SET_BUDGET_LIMIT, payload: limit });
   };
 
-  // Mock API calls - now work with local state and enhanced with logo handling
+  const resetSubscriptions = () => {
+    localStorage.removeItem('subscriptions');
+    localStorage.removeItem('budgetLimit');
+    dispatch({ type: ActionTypes.RESET_SUBSCRIPTIONS });
+  };
+
+  const loadMockData = () => {
+    dispatch({ type: ActionTypes.LOAD_MOCK_DATA });
+  };
+
+  // Mock API calls
   const fetchSubscriptions = async () => {
     setLoading(true);
     try {
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Enhance existing subscriptions with logos
       const enhancedSubscriptions = state.subscriptions.map(sub => ({
         ...sub,
         logo: getLogoUrl(sub)
       }));
-      
       dispatch({ type: ActionTypes.SET_SUBSCRIPTIONS, payload: enhancedSubscriptions });
     } catch (error) {
       setError('Failed to fetch subscriptions');
@@ -250,9 +238,7 @@ export const SubscriptionProvider = ({ children }) => {
   const saveSubscription = async (subscriptionData) => {
     setLoading(true);
     try {
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 300));
-      
       const subscription = {
         ...subscriptionData,
         id: subscriptionData.id || generateId(),
@@ -262,10 +248,8 @@ export const SubscriptionProvider = ({ children }) => {
       };
       
       if (subscriptionData.id) {
-        // Update existing
         updateSubscription(subscription);
       } else {
-        // Add new
         addSubscription(subscription);
       }
     } catch (error) {
@@ -279,7 +263,6 @@ export const SubscriptionProvider = ({ children }) => {
   const removeSubscription = async (id) => {
     setLoading(true);
     try {
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 300));
       deleteSubscription(id);
     } catch (error) {
@@ -290,7 +273,7 @@ export const SubscriptionProvider = ({ children }) => {
     }
   };
 
-  // Enhanced subscription helper functions
+  // Helper functions
   const getSubscriptionLogo = (subscription) => {
     return getLogoUrl(subscription);
   };
@@ -305,7 +288,6 @@ export const SubscriptionProvider = ({ children }) => {
 
   const value = {
     ...state,
-    // Actions
     setLoading,
     setSubscriptions,
     addSubscription,
@@ -313,11 +295,11 @@ export const SubscriptionProvider = ({ children }) => {
     deleteSubscription,
     setError,
     setBudgetLimit,
-    // API calls
+    resetSubscriptions,
+    loadMockData,
     fetchSubscriptions,
     saveSubscription,
     removeSubscription,
-    // Helper functions
     getSubscriptionLogo,
     searchAvailableServices,
     getAvailableCategories

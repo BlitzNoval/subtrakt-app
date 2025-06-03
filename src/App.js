@@ -9,6 +9,7 @@ import SubscriptionDetail from './pages/SubscriptionDetail';
 import Budget from './pages/Budget';
 import Usage from './pages/Usage';
 import Settings from './pages/Settings';
+import Roadmap from './pages/Changes'; // Updated import
 import LoginForm from './pages/LoginForm';
 import './styles/App.css'; 
 import './styles/DarkMode/ComponentsDark.css';
@@ -17,7 +18,6 @@ import './styles/DarkMode/GlobalStylesDark.css';
 import './styles/Responsiveness/Responsive1.css';
 import './styles/Responsiveness/Responsive2.css';
 import './styles/Responsiveness/Responsive3.css';
-
 
 function AppContent() {
   const screenSize = useResponsive();
@@ -43,15 +43,16 @@ function AppContent() {
             )}
             <Sidebar isOpen={sidebarOpen} screenSize={screenSize} />
             <div className="content">
-           <Routes>
-            <Route path="/" element={<Dashboard screenSize={screenSize} />} />
-            <Route path="/dashboard" element={<Dashboard screenSize={screenSize} />} />
-            <Route path="/subscriptions" element={<Subscriptions screenSize={screenSize} />} />
-            <Route path="/subscription/:id" element={<SubscriptionDetail screenSize={screenSize} />} />
-            <Route path="/budget" element={<Budget screenSize={screenSize} />} />
-            <Route path="/usage" element={<Usage screenSize={screenSize} />} />
-            <Route path="/settings" element={<Settings screenSize={screenSize} />} />
-          </Routes>
+              <Routes>
+                <Route path="/" element={<Dashboard screenSize={screenSize} />} />
+                <Route path="/dashboard" element={<Dashboard screenSize={screenSize} />} />
+                <Route path="/subscriptions" element={<Subscriptions screenSize={screenSize} />} />
+                <Route path="/subscription/:id" element={<SubscriptionDetail screenSize={screenSize} />} />
+                <Route path="/budget" element={<Budget screenSize={screenSize} />} />
+                <Route path="/usage" element={<Usage screenSize={screenSize} />} />
+                <Route path="/settings" element={<Settings screenSize={screenSize} />} />
+                <Route path="/roadmap" element={<Roadmap screenSize={screenSize} />} /> {/* Updated route */}
+              </Routes>
             </div>
           </div>
         } />

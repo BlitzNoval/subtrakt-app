@@ -74,3 +74,64 @@
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(29, 209, 161, 0.3);
 }
+
+/* Development Buttons */
+.dev-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.dev-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.reset-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px; /* Ensure buttons don't shrink too much */
+  text-align: center;
+}
+
+.reset-button.reset-data {
+  background: #ef4444;
+}
+
+.reset-button.reset-data:hover {
+  background: #dc2626;
+}
+
+.reset-button.load-sample {
+  background: #169596;
+}
+
+.reset-button.load-sample:hover {
+  background: #1bbbbb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(29, 209, 161, 0.3);
+}
+
+.feedback-message {
+  font-size: 14px;
+  color: #000000;
+  margin-top: 8px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.feedback-message.hidden {
+  opacity: 0;
+}

@@ -57,7 +57,7 @@ const MainDashboard = () => {
       <header className="top-header">
         <h1 className="logo">  Your Subtrakt Dashboard </h1>
         <div className="header-icons">
-          <button className="icon-button help-button" onClick={() => navigate('/settings')}>
+          <button className="icon-button help-button" onClick={() => navigate('/architecture')}>
             <div className="centered-icon">
             <img 
               src="/images/Doc.png" 
