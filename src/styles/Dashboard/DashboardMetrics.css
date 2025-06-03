@@ -15,41 +15,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: rgb(0, 0, 0);
+  color: #1e1e1e; /* Darker text for readability */
   padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 500;
+  background: #ffffff;
 }
 
 .metric-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 }
 
 /* Metric Card Colors */
 .metric-card.active-subs {
-  background: rgba(134,231,232,255 ); /* Teal with 0.9 opacity */
-  border: 3px solid #169596;          /* Solid teal border */
+  background: #d1f3f4;
+  border: 2px solid #17a2b8;
+  color: #065d63;
 }
 
-
 .metric-card.total-spent {
-  background: #fecfcf;
-  border: 3px solid #e24109;
+  background: #ffe0e0;
+  border: 2px solid #e74c3c;
+  color: #922b21;
 }
 
 .metric-card.new-subs {
-   background: #d0cffe;
-  border: 3px solid #3578d6;
+  background: #d6e9ff;
+  border: 2px solid #3498db;
+  color: #1b4f72;
 }
 
 .metric-card.free-trials {
-   background: #feeecf;
-  border: 3px solid #ffa502;
+  background: #fff3d1;
+  border: 2px solid #f39c12;
+  color: #7a4e00;
 }
-
-
-
-
-
-

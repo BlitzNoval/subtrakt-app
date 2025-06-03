@@ -57,16 +57,22 @@ const SearchFilter = ({ onSearch, onFilter, categories, importanceLevels }) => {
           />
         </div>
         
-        <button 
-          className={`filter-button ${showFilters ? 'active' : ''}`}
-          onClick={() => setShowFilters(!showFilters)}
-        >
-          <span className="filter-icon">⚙️</span>
-          Filter
-          {activeFilterCount > 0 && (
-            <span className="filter-count">{activeFilterCount}</span>
-          )}
-        </button>
+ <button 
+  className={`filter-button ${showFilters ? 'active' : ''}`}
+  onClick={() => setShowFilters(!showFilters)}
+>
+  <img 
+    src="/images/Filter.png" 
+    alt="Filter Icon"
+    className="filter-icon"
+  />
+  Filter
+  {activeFilterCount > 0 && (
+    <span className="filter-count">{activeFilterCount}</span>
+  )}
+</button>
+
+
       </div>
 
       {showFilters && (

@@ -55,12 +55,12 @@ const MainDashboard = () => {
     <div className="dashboard">
       {/* Header Section */}
       <header className="top-header">
-        <h1 className="logo">Subtrakt</h1>
+        <h1 className="logo">  Your Subtrakt Dashboard </h1>
         <div className="header-icons">
           <button className="icon-button help-button" onClick={() => navigate('/settings')}>
             <div className="centered-icon">
             <img 
-              src="/images/Doc.png" 
+              src="/images/User.png" 
               alt="Notifications"
             />
           </div>

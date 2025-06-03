@@ -26,7 +26,7 @@
 }
 
 .page-header h1 {
-  color: #2c3e50;
+  color: #000000;
   font-size: 28px;
   font-weight: 700;
   margin: 0;
@@ -39,7 +39,7 @@
 }
 
 .add-subscription-btn {
-  background: linear-gradient(135deg, #1dd1a1 0%, #10ac84 100%);
+  background: #169596;
   border: none;
   color: white;
   padding: 12px 24px;
@@ -48,6 +48,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 14px;
+  position: relative;
 }
 
 .add-subscription-btn:hover {
