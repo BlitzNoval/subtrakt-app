@@ -30,25 +30,25 @@
 
 /* Metric Card Colors */
 .metric-card.active-subs {
-  background: #d1f3f4;
+  background: #169596;
   border: 2px solid #17a2b8;
-  color: #065d63;
+  color: #fff3f3;
 }
 
 .metric-card.total-spent {
-  background: #ffe0e0;
+  background: #e90404;
   border: 2px solid #e74c3c;
-  color: #922b21;
+  color: #fff3f3;
 }
 
 .metric-card.new-subs {
-  background: #d6e9ff;
+  background: #408adf;
   border: 2px solid #3498db;
-  color: #1b4f72;
+  color: #fff3f3;
 }
 
 .metric-card.free-trials {
-  background: #fff3d1;
-  border: 2px solid #f39c12;
-  color: #7a4e00;
+  background: #f86008;
+  border: 2px solid #fa8416;
+  color: #fff3f3;
 }

@@ -97,7 +97,7 @@ const SpendingChart = ({ totalMonthlySpent, timeFrame, chartLoading }) => {
 
   return (
     <div className="chart-card spending-chart">
-      <h3>Spending Over Time</h3>
+      <h3>Estimated Spending Over Time</h3>
       <div className="chart-container">
         {chartLoading ? (
           <div className="chart-loading">

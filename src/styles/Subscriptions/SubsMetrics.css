@@ -1,33 +1,51 @@
-* METRICS CARDS */
+/* METRIC CARDS */
 .metric-card {
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   padding: 28.5px;
   text-align: center;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s, color 0.3s;
+  color: #1e1e1e;
+  font-weight: 500;
+  cursor: pointer;
 }
 
+/* Hover effect */
 .metric-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  background: #000;
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border-color: #000;
 }
 
+/* Updated Pastel Color Themes */
 .metric-card.total-cost {
-  background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
-  color: white;
+  background: #fc4b4b;
+  border: 2px solid #e74c3c;
+  color: #fff3f3;
 }
 
 .metric-card.active-count {
-  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-  color: white;
+  background: #276f72;
+  border: 2px solid #17a2b8;
+  color: #fff3f3;
 }
 
 .metric-card.trials-count {
-  background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);
-  color: white;
+  background: #f86008;
+  border: 2px solid #fa8416;
+  color: #fff3f3;
 }
 
+.metric-card.new-count {
+  background: #408adf;
+  border: 2px solid #3498db;
+  color: #1b4f72;
+}
+
+/* Typography */
 .metric-label {
   font-size: 12px;
   font-weight: 500;
@@ -51,7 +69,7 @@
   opacity: 0.8;
 }
 
-.metric-number{
+.metric-number {
   font-weight: 700;
   margin-bottom: 1px;
 }
@@ -71,16 +89,16 @@
   .subscriptions-content {
     flex-direction: column;
   }
-  
+
   .table-container {
     flex: 1;
   }
-  
+
   .metrics-sidebar {
     flex-direction: row;
     gap: 12px;
   }
-  
+
   .metric-card {
     flex: 1;
   }
