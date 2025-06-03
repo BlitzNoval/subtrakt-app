@@ -18,7 +18,7 @@
 
 .falling-square {
   position: absolute;
-  background: rgb(1, 255, 213);
+  background: #169596;
   border-radius: 0px;
   animation: fall linear infinite;
   transform: rotate(45deg);
@@ -36,7 +36,7 @@
     opacity: 1;
   }
   to {
-    transform: translateY(calc(100vh + 150px)) rotate(405deg);
+    transform: translateY(calc(100vh + 150px)) rotate(450deg);
     opacity: 1;
   }
 }

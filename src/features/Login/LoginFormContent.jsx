@@ -113,7 +113,7 @@ const LoginFormContent = ({ isLogin, setIsLogin, loading, onSubmit, onGoogleSign
 
       <div className="login-footer">
         <p>
-          {isLogin ? "Already have an account?" : "Don't have an account?"}
+          {isLogin ?  "Don't have an account?" : "Already have an account?"}
           <button className="toggle-button" onClick={toggleMode}>
             {isLogin ? 'Sign up' : 'Log in'}
           </button>

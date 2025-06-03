@@ -8,7 +8,7 @@ const AnimatedBackground = () => {
     for (let i = 0; i < 20; i++) {
       squares.push({
         id: i,
-        width: Math.random() * 100 + 100,  // Width: 100-200px
+        width: Math.random() * 0 + 100,  // Width: 100-200px
         height: Math.random() * 20 + 20,   // Height: 20-40px (thin)
         left: Math.random() * 80,
         delay: Math.random() * 0,

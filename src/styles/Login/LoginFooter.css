@@ -6,21 +6,21 @@
 
 .login-footer p {
   font-size: 14px;
-  color: #6b7280;
+  color: #000000;
   margin: 0;
 }
 
 .toggle-button {
   background: none;
   border: none;
-  color: #0066cc;
+  color: #169596;
   font-weight: 600;
   cursor: pointer;
-  margin-left: 4px;
+  margin-left: 10px;
   transition: color 0.2s ease;
 }
 
 .toggle-button:hover {
-  color: #0052a3;
+  color: #000000;
   text-decoration: underline;
 }
