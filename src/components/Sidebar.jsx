@@ -11,7 +11,7 @@ const Sidebar = ({ isOpen, screenSize }) => {
     { path: '/budget', label: 'Budget' },
     { path: '/usage', label: 'Usage' },
     { path: '/settings', label: 'Settings' },
-    { path: '/roadmap', label: 'Roadmap' } // Updated nav item
+    { path: '/documentation', label: 'Documentation' } // Updated nav item
   ];
 
   const sidebarClasses = screenSize?.breakpoint === 'xs' 

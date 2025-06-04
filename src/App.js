@@ -9,7 +9,7 @@ import SubscriptionDetail from './pages/SubscriptionDetail';
 import Budget from './pages/Budget';
 import Usage from './pages/Usage';
 import Settings from './pages/Settings';
-import Roadmap from './pages/Changes'; // Updated import
+import Documentation from './pages/Documentation'; // Updated import
 import LoginForm from './pages/LoginForm';
 import './styles/App.css'; 
 import './styles/DarkMode/ComponentsDark.css';
@@ -51,7 +51,7 @@ function AppContent() {
                 <Route path="/budget" element={<Budget screenSize={screenSize} />} />
                 <Route path="/usage" element={<Usage screenSize={screenSize} />} />
                 <Route path="/settings" element={<Settings screenSize={screenSize} />} />
-                <Route path="/roadmap" element={<Roadmap screenSize={screenSize} />} /> {/* Updated route */}
+                <Route path="/Documentation" element={<Documentation screenSize={screenSize} />} /> {/* Updated route */}
               </Routes>
             </div>
           </div>

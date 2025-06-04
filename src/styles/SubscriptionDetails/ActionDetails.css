@@ -63,13 +63,15 @@
 }
 
 .action-item:hover {
-  background: #1dd1a1;
-  color: white;
-  transform: translateX(4px);
+  background: #1bbbbb;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(29, 209, 161, 0.3);
 }
 
 .action-item.cancel:hover {
   background: #ef4444;
+  color: #ffffff;
 }
 
 .action-icon {

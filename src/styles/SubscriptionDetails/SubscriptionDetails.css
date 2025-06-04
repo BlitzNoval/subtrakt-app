@@ -49,14 +49,14 @@
 }
 
 .edit-btn {
-  background: #3498db;
+  background: #169596;
   color: white;
 }
 
 .edit-btn:hover {
-  background: #2980b9;
+  background: #1bbbbb;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  box-shadow: 0 4px 12px rgba(29, 209, 161, 0.3);
 }
 
 .delete-btn {

@@ -1,0 +1,104 @@
+/* DOCUMENTATION PAGE STYLING */
+.documentation-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #333;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* HEADER SECTION */
+.documentation-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 0;
+  border-bottom: 3px solid #169596;
+}
+
+.documentation-header h1 {
+  font-size: 36px;
+  color: #169596;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.documentation-header p {
+  font-size: 18px;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* MAIN SECTIONS */
+.documentation-section {
+  margin-bottom: 40px;
+  padding: 30px 0;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.documentation-section:last-child {
+  border-bottom: none;
+}
+
+.documentation-section h2 {
+  font-size: 28px;
+  color: #1d1d1d;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-left: 4px solid #169596;
+  padding-left: 15px;
+}
+
+.documentation-section h3 {
+  font-size: 22px;
+  color: #2c3e50;
+  margin: 25px 0 15px 0;
+  font-weight: 600;
+}
+
+.documentation-section h4 {
+  font-size: 18px;
+  color: #34495e;
+  margin: 20px 0 10px 0;
+  font-weight: 600;
+}
+
+.documentation-section p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+/* SUBSECTIONS */
+.subsection {
+  margin: 25px 0;
+  padding: 20px 0;
+  border-left: 3px solid #169596;
+  padding-left: 20px;
+}
+
+.subsection h3 {
+  color: #169596;
+  margin-top: 0;
+}
+
+/* FEATURE LISTS */
+.feature-list {
+  padding-left: 25px;
+  margin: 15px 0;
+}
+
+.feature-list li {
+  font-size: 15px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.feature-list li strong {
+  color: #1d1d1d;
+  font-weight: 600;
+}

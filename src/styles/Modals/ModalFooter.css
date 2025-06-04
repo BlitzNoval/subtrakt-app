@@ -33,6 +33,7 @@
 }
 
 .modal-footer button.primary-button:hover {
+ background: #1bbbbb;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(29, 209, 161, 0.3);
 }
