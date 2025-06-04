@@ -31,17 +31,29 @@ const Documentation = ({ screenSize }) => {
         <h2>Personal Development Journey</h2>
         
         <div className="subsection">
-          <h3>The Reality of My Previous Work</h3>
-          <p>I'll be honest - my performance in previous coding assignments hasn't been where I wanted it to be. I struggled with React concepts, state management felt overwhelming, and my code was frankly a mess. Looking back at my earlier submissions, I can see the gaps in my understanding and the lack of thinking that held me back.</p>
-          <p>Assignment 2 gave me the foundation and vision, but I knew the implementation would be where I either proved I belonged in honours or continued to struggle. I made a conscious decision that this final project would be different. I wasn't going to submit something half-finished or poorly thought out.</p></div>
+        <h3>The Reality of My Previous Work</h3>
+        <p>
+          If I’m being honest - the React coding test kicked my butt. From so many factors-bad day, no sleep, and a not-so-simple test-I took a big hit on my IM mark. IM is one of my favourite modules in terms of technical learning and I enjoy it. React was overwhelming at first, and a lot of my code was and still is messy. Looking back at my earlier work, I can see massive gaps in my code and understanding. My thinking lacked a technical understanding that held me back.
+        </p>
+        <p>
+          When I got Assignment 2, I knew I had a foundation to redeem myself, but I knew the implementation would be where I proved to myself I can get the marks and create something good. I made a conscious decision that this final project would be different. The final project needed to be good and solid. I wasn’t going to submit something half-finished or poorly thought out.
+        </p>
+      </div>
 
         <div className="subsection">
-          <h3>Devlopment Changes</h3>
-           <h4>Reasoning</h4>
-          <p>Over the 3.5 weeks, I took a completely different approach to development. Instead of rushing to code, I spent the first few days really understanding React's mental model - how state flows, when to use Context vs local state, how to structure components for reusability. I researched industry patterns, looked at how professional apps handle complex state, and studied accessibility implementations because I genuinely wanted to build something</p>
-          <p> I spent hours studying professional React applications, understanding their folder structures, and learning from their patterns. When I encountered complex problems, I would research multiple solutions, understand the trade-offs, and adapt the best approaches to my specific needs. Every architectural decision came from this research and my growing understanding of React best practices. My coding strenght is still awful but I took my time and alot of patience and bug fixing to get to this point.</p>
-          <p>What's different about this project isn't just the final quality - it's that I can explain every decision I made. I know why I chose useReducer over useState for the subscription context. I understand why I separated my features into their own folders. I can defend my accessibility implementation because I researched the actual needs of users with different abilities. This isn't just working code - it's code I genuinely understand and am proud of.</p>
-          <p>This project represents not just what I can build now, but how I want to approach development in my career. The combination of personal vision, thorough research, and leveraging available tools to implement complex ideas - that's how real software gets built. I'm proud that I've finally created something that demonstrates both technical competence and genuine understanding of user-centered design.</p>
+        <h4>Reasoning</h4>
+        <p>
+          Over the weeks of development, I took a different approach. I built in small sections, I didn’t rush the code. I spent a couple of days trying to understand my app in terms of a mental model - how the states would flow, when I would use local vs context, how I would structure components for reusability.
+        </p>
+        <p>
+          I researched a lot of React tutorials and industry professional guides and looked at complex states that would help with my app, as well as the accessibility implementation. I spent hours doing this and creating the folder structure in my head and learning their patterns. When I ran into a wall, I would instantly pull up as many solutions as possible to see what would work for me. I knew there are trade-offs to this, but by the end of it there are 0 errors in my project.
+        </p>
+        <p>
+          Every decision came from this research and my understanding of React. My coding strength is still awful, but I took my time and had a lot of patience and bug fixing to get to this point. If I had to rebuild any component or code in this app, it would take me another 3 weeks. 😅
+        </p>
+        <p>
+          But I have a much better understanding of the internal structure of my code and how my future code should be. What's different about this project isn't the final quality -it's that I can explain every decision I made. I know why I chose <u>useReducer</u> over <u>useState</u> for the subscription context. I understand why I separated my features into their own folders. I can defend my accessibility implementation and responsiveness choices. This isn't just working code—it’s code I understand and am proud of. This project represents not just what I can build now, but how I want to approach development in my career.
+        </p>
         </div>
       </div>
 
