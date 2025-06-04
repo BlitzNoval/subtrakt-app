@@ -25,4 +25,5 @@ Chart.js - Data visualization
 Development Documentation
 For detailed architectural decisions and development process, visit the Documentation page within the app.
 
-
+Github Repo 
+https://github.com/BlitzNoval/subtrakt-app 
