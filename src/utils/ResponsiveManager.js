@@ -1,7 +1,12 @@
 // src/utils/ResponsiveManager.js
+// Custom responsive system for dynamic layout management
+// Provides breakpoint detection and CSS variable updates
+
 import { useEffect, useState, useCallback } from 'react';
 
-// Breakpoint definitions
+// Define screen size thresholds for responsive behavior
+// Covers mobile through ultra-wide displays
+
 export const BREAKPOINTS = {
   xs: 480,    // Mobile
   sm: 768,    // Tablet
@@ -11,7 +16,9 @@ export const BREAKPOINTS = {
   xxl: 2560   // Ultra-wide/4K
 };
 
-// Get current breakpoint
+// Convert pixel width to named breakpoint category
+// Simplifies responsive logic throughout the app
+
 export const getBreakpoint = (width) => {
   if (width < BREAKPOINTS.xs) return 'xs';
   if (width < BREAKPOINTS.sm) return 'sm';
@@ -21,7 +28,8 @@ export const getBreakpoint = (width) => {
   return 'xxl';
 };
 
-// Custom hook for responsive behavior
+// Custom hook (useResponsive) for responsive behavior across components
+// Tracks screen size and applies dynamic styling
 export const useResponsive = () => {
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth,
@@ -36,10 +44,11 @@ export const useResponsive = () => {
 
     setScreenSize({ width, height, breakpoint });
 
-    // Update CSS variables for dynamic sizing
+    // Update CSS variables based on current breakpoint. Allows components to adapt without re-rendering , instant feedback , it really is 2025 :D
     const root = document.documentElement;
     
-    // Dynamic padding based on screen size
+    // Map breakpoints to appropriate spacing and sizing values
+    // Its helping to maintain visual hierarchy across different screen sizes
     let contentPadding, sidebarWidth, gridGap;
     
     switch (breakpoint) {
@@ -86,17 +95,21 @@ export const useResponsive = () => {
     root.style.setProperty('--screen-height', `${height}px`);
   }, []);
 
+  // Listening for window resize and orientation changes
+  // Ensures responsive behavior on device rotation
+
   useEffect(() => {
-    // Initial setup
     handleResize();
 
-    // Listen for resize events
+    // Listening for resize events
     window.addEventListener('resize', handleResize);
     
-    // Listen for orientation changes (mobile)
+    // Listening for orientation changes (mobile)  
     window.addEventListener('orientationchange', handleResize);
 
     // Check for screen changes periodically (for monitor switching)
+    // Handle monitor switching and external display changes
+    // Catches size changes that events might miss
     const intervalId = setInterval(() => {
       if (window.innerWidth !== screenSize.width || window.innerHeight !== screenSize.height) {
         handleResize();
@@ -113,7 +126,7 @@ export const useResponsive = () => {
   return screenSize;
 };
 
-// HOC to wrap components with responsive behavior
+// Wrap components with responsive behavior
 export const withResponsive = (Component) => {
   return function ResponsiveComponent(props) {
     const screenSize = useResponsive();
@@ -121,7 +134,9 @@ export const withResponsive = (Component) => {
   };
 };
 
-// Utility function to get responsive grid columns
+// Define grid column counts for different screen sizes
+// Provides consistent layout structure across breakpoints
+
 export const getGridColumns = (breakpoint) => {
   const columns = {
     xs: 4,
@@ -134,7 +149,8 @@ export const getGridColumns = (breakpoint) => {
   return columns[breakpoint] || 12;
 };
 
-// Utility function to get responsive font sizes
+// Scale typography based on screen size
+
 export const getFontSize = (baseSize, breakpoint) => {
   const multipliers = {
     xs: 0.85,

@@ -14,7 +14,9 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CategoryChart = ({ subscriptions, chartLoading }) => {
   
-  // Calculate category spending
+  // Calculate category totals with price normalization
+  // Handles various price formats (R prefix, decimals, etc.)
+
   const getCategorySpending = () => {
     const categoryTotals = {};
     
@@ -23,6 +25,10 @@ const CategoryChart = ({ subscriptions, chartLoading }) => {
       const category = sub.category || 'Other';
       categoryTotals[category] = (categoryTotals[category] || 0) + price;
     });
+
+    // Custom tooltip formatting for percentage and currency display
+    // Provides meaningful context for chart interaction, the whole point of the chart and the application
+    // This ensures users can see both absolute and relative values
 
     return {
       labels: Object.keys(categoryTotals),
@@ -75,5 +81,7 @@ const CategoryChart = ({ subscriptions, chartLoading }) => {
     </div>
   );
 };
+
+
 
 export default CategoryChart;

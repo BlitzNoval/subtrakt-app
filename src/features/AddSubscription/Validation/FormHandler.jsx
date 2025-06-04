@@ -30,6 +30,9 @@ export class FormHandler {
     }
   };
 
+  
+  // Map service data structure to form field requirements
+  // Transforms external data format to internal form schema
   static handleServiceSelect = (service, setSelectedService, setSearchQuery, setFormData, setShowDropdown, setSearchResults) => {
     setSelectedService(service);
     setSearchQuery(service.fullName);
@@ -45,7 +48,12 @@ export class FormHandler {
     }));
     setShowDropdown(false);
     setSearchResults([]);
-  };
+  }; 
+  
+  
+    // Normalize subscription data for form consumption
+    // Handles both new entries and existing subscription edits
+    // Ensures consistent data structure for all subscriptions
 
   static getInitialFormData = (subscription) => {
     if (!subscription) {
@@ -63,7 +71,9 @@ export class FormHandler {
         notes: '',
         logo: ''
       };
-    }
+    } 
+    
+
 
     return {
       ...subscription,

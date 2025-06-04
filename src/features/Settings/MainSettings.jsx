@@ -21,6 +21,9 @@ const MainSettings = () => {
     showTotals: localStorage.getItem('showTotals') !== 'false'
   });
 
+  // Load accessibility preferences from persistent storage
+  // Maintains user preferences across browser sessions
+
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('userToken') !== null);
   const [userEmail, setUserEmail] = useState(localStorage.getItem('userEmail') || '');
 
@@ -32,7 +35,9 @@ const MainSettings = () => {
       setLoading(false);
     };
     loadSettings();
-  }, []);
+  }, []); 
+  // Apply accessibility modes to document body classes
+  // Real-time DOM manipulation for immediate visual feedback
 
   // Apply accessibility modes to body
   useEffect(() => {
@@ -41,6 +46,9 @@ const MainSettings = () => {
     document.body.classList.toggle('colorblind-mode', settings.colorBlindMode);
     document.body.classList.toggle('large-text-mode', settings.largeTextMode);
   }, [settings]);
+
+  // Animate setting changes for user feedback
+  // Provides visual confirmation of preference updates
 
   const handleSettingChange = async (setting, value) => {
     const settingCard = document.querySelector(`[data-setting="${setting}"]`);

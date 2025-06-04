@@ -1,3 +1,8 @@
+// Centralized color management for subscription categories
+// Ensures consistent theming across charts and UI
+
+
+// Main color palette for category visualization
 export const categoryColors = {
   // Main categories
   'Entertainment': '#e17055',
@@ -12,7 +17,7 @@ export const categoryColors = {
   'Other': '#b2bec3'
 };
 
-// Icon background colors (darker shades)
+// Icon background colors for when the icon isnt assigned (darker shades)
 export const categoryIconColors = {
   'Entertainment': '#d63031',
   'Software': '#e67e22',
@@ -26,7 +31,7 @@ export const categoryIconColors = {
   'Other': '#636e72'
 };
 
-// Get category color with fallback
+// Get category color with fallback, Prevents undefined colors from breaking UI
 export const getCategoryColor = (category) => {
   return categoryColors[category] || categoryColors['Other'];
 };
@@ -37,6 +42,8 @@ export const getCategoryIconColor = (category) => {
 };
 
 // Get chart colors array for multiple categories
+// Maps category lists to consistent color schemes
+// ITS ALIVE! It can be seen across the app.
 export const getChartColors = (categories) => {
   return categories.map(cat => getCategoryColor(cat));
 };

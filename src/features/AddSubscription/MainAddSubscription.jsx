@@ -18,10 +18,15 @@ import '../../styles/Modals/AddSubForm/ToggleSwitch.css';
 const MainAddSubscription = ({ closeModal, subscription = null }) => {
   const { saveSubscription, loading } = useSubscriptions();
 
-  // Form data state
+  // Initialize form with either edit data or clean slate
+  // Handles both create and update scenarios through single component
+
   const [formData, setFormData] = useState(() => FormHandler.getInitialFormData(subscription));
 
-  // Search and dropdown states
+  // Dynamic service search with 1+ character threshold
+  // Balances responsiveness with API-like behavior simulation
+  // Uses local state for search query and results
+  
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -29,18 +34,20 @@ const MainAddSubscription = ({ closeModal, subscription = null }) => {
   const searchInputRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  // Validation errors and tab state
+
   const [errors, setErrors] = useState({});
   const [activeTab, setActiveTab] = useState('basic');
 
-  // Pre-fill search query if editing
+
   useEffect(() => {
     if (subscription) {
       setSearchQuery(subscription.name);
     }
   }, [subscription]);
 
-  // Handle search input changes
+  // Initialize form data with existing subscription if editing
+  // Auto-populate form fields from predefined service data
+
   useEffect(() => {
     if (searchQuery.length >= 1) {
       const results = subscriptionService.searchServices(searchQuery);
@@ -84,6 +91,9 @@ const MainAddSubscription = ({ closeModal, subscription = null }) => {
   const handleSubmit = (e) => {
     FormHandler.handleSubmit(e, formData, subscription, validateForm, setErrors, saveSubscription, closeModal);
   };
+
+  // Handles form submission with validation and service saving
+  // Uses FormHandler for cleaner logic separation
 
   const categories = subscriptionService.getCategories();
 

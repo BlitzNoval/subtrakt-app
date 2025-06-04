@@ -1,6 +1,10 @@
 import mockSubscriptions from '../../utils/Mockdata';
+// State management logic for subscription operations
+// Handles calculations and state updates
 
 // Initial state
+// Define all possible state values and their defaults
+// Centralizes action names to prevent typos
 export const initialState = {
   subscriptions: [],
   loading: false,
@@ -33,9 +37,15 @@ export const calculateTotalSpent = (subscriptions) => {
   }, 0);
 };
 
+// Add up all subscription prices for total cost
+// Removes R symbols and handles different price formats
+
 export const calculateNewSubscriptions = (subscriptions) => {
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
+
+  // Count how many subscriptions added this month
+  // Used for dashboard "new this month" number
   
   return subscriptions.filter(sub => {
     if (!sub.dateAdded) return false;
@@ -43,6 +53,9 @@ export const calculateNewSubscriptions = (subscriptions) => {
     return subDate.getMonth() === currentMonth && subDate.getFullYear() === currentYear;
   }).length;
 };
+
+  // Find subscriptions that are free trials
+  // Checks different ways trials might be marked
 
 export const calculateFreeTrials = (subscriptions) => {
   return subscriptions.filter(sub => 
@@ -55,11 +68,17 @@ export const generateId = () => {
   return Date.now() + Math.random();
 };
 
+// When subscription list changes, update all the counts
+// Keeps dashboard numbers accurate
 // Reducer function
+
 export const subscriptionReducer = (state, action) => {
   switch (action.type) {
     case ActionTypes.SET_LOADING:
       return { ...state, loading: action.payload };
+
+      // Add new subscription and update all counts at same time
+      // Prevents numbers from being wrong temporarily
     
     case ActionTypes.SET_SUBSCRIPTIONS:
       const subscriptions = action.payload;
@@ -72,6 +91,10 @@ export const subscriptionReducer = (state, action) => {
         freeTrialsActive: calculateFreeTrials(subscriptions)
       };
     
+
+      // Find and replace subscription while preserving array order
+      // Its Recalculating the metrics after update
+      
     case ActionTypes.ADD_SUBSCRIPTION:
       const newSubscriptions = [...state.subscriptions, action.payload];
       return {
@@ -93,6 +116,9 @@ export const subscriptionReducer = (state, action) => {
         totalMonthlySpent: calculateTotalSpent(updatedSubscriptions),
         freeTrialsActive: calculateFreeTrials(updatedSubscriptions)
       };
+
+      // Replace current data with example subscriptions
+      // Useful for testing and showing off the app
     
     case ActionTypes.DELETE_SUBSCRIPTION:
       const filteredSubscriptions = state.subscriptions.filter(

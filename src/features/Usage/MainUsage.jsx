@@ -24,6 +24,10 @@ const MainUsage = () => {
     loadUsageData();
   }, []);
 
+  // Normalize different usage frequencies to monthly standard , basically how we are calculating usage hours per usage payment
+  // This ensures that daily, weekly, and monthly subscriptions are comparable
+  // Enables consistent value calculations across varied input patterns like 'daily', 'weekly', 'monthly', etc.
+
   useEffect(() => {
     const recalculateInsights = async () => {
       if (!pageLoading) {
@@ -32,6 +36,10 @@ const MainUsage = () => {
         setInsightsLoading(false);
       }
     };
+
+    // Dynamic sorting based on calculated usage metrics
+    // Allows users to identify high/low value subscriptions quickly
+
     recalculateInsights();
   }, [sortOrder, filters, searchTerm, pageLoading]);
 

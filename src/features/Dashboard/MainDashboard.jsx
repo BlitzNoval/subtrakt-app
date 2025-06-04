@@ -13,6 +13,9 @@ const MainDashboard = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   
+  // Extract user identification from available auth data
+  // Fallback hierarchy: stored name → email prefix → generic
+
   const {
     loading,
     activeSubscriptions,

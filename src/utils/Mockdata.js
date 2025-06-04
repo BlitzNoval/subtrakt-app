@@ -1,3 +1,6 @@
+
+// Sample subscription data for testing and demonstration
+
 const mockSubscriptions = [
   {
     id: 1,

@@ -1,11 +1,16 @@
 import { subscriptionService } from '../../utils/SubscriptionService';
 import { ActionTypes, generateId } from './subscriptionReducer';
 
-// Logo URL helper with fallback
+// Action creator and logic for subscription operations
+// Separates messy logic from reducer and components
+
 const getLogoUrl = (subscription) => {
   if (subscription.logo) {
     return subscription.logo;
   }
+
+  // Find logo for subscription: try user's logo, then database, then make one
+  // Every subscription gets a picture this way
   
   const matchedService = subscriptionService.getServiceByName(subscription.name);
   if (matchedService && matchedService.logo) {
@@ -51,9 +56,14 @@ export const subscriptionActions = (dispatch, state) => {
     dispatch({ type: ActionTypes.RESET_SUBSCRIPTIONS });
   };
 
+  // If subscription has ID, update it. If no ID, create new one
+  // Same function handles both adding and editing
+
   const loadMockData = () => {
     dispatch({ type: ActionTypes.LOAD_MOCK_DATA });
   };
+
+  // Convert form data into proper subscription format, Makes sure all subscriptions have same structure
 
   // Mock API calls
   const fetchSubscriptions = async () => {
@@ -73,6 +83,9 @@ export const subscriptionActions = (dispatch, state) => {
     }
   };
 
+  // Centralized error handling for subscription operations
+  
+
   const saveSubscription = async (subscriptionData) => {
     setLoading(true);
     try {
@@ -91,12 +104,17 @@ export const subscriptionActions = (dispatch, state) => {
         addSubscription(subscription);
       }
     } catch (error) {
+
+      // Simple way for components to get subscription logos...Hides the logo-finding logic which is nicer for everyone involved D:
+
       setError('Failed to save subscription');
       console.error('Error saving subscription:', error);
     } finally {
       setLoading(false);
     }
   };
+
+
 
   const removeSubscription = async (id) => {
     setLoading(true);
@@ -119,6 +137,8 @@ export const subscriptionActions = (dispatch, state) => {
   const searchAvailableServices = (query) => {
     return subscriptionService.searchServices(query);
   };
+  
+  // Provides autocomplete functionality for forms
 
   const getAvailableCategories = () => {
     return subscriptionService.getCategories();

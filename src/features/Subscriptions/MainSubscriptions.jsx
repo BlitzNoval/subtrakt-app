@@ -41,6 +41,9 @@ const MainSubscriptions = () => {
     loadPage();
   }, []);
 
+  // Dual Handler for both create and update operations
+  // Maintains consistent state management across CRUD operations
+
   const handleSaveSubscription = async (subscriptionData) => {
     try {
       await saveSubscription(subscriptionData);
@@ -59,6 +62,10 @@ const MainSubscriptions = () => {
       console.error('Error deleting subscription:', error);
     }
   };
+
+  // Apply search and filter criteria to subscription dataset
+  // Separates filtering logic from display logic for reusability
+  // Im having alot of fun L:
 
   const openModal = (subscription = null) => {
     setEditingSubscription(subscription);
@@ -82,6 +89,7 @@ const MainSubscriptions = () => {
     );
   }
 
+  // Render the main subscriptions page with all components
   return (
     <div className="subscriptions-page">
       <div className="page-header">

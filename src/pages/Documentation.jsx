@@ -26,6 +26,25 @@ const Documentation = ({ screenSize }) => {
         </div>
       </div>
 
+       {/* Development Timeline */}
+            <div className="documentation-section">
+        <h2>Personal Development Journey</h2>
+        
+        <div className="subsection">
+          <h3>The Reality of My Previous Work</h3>
+          <p>I'll be honest - my performance in previous coding assignments hasn't been where I wanted it to be. I struggled with React concepts, state management felt overwhelming, and my code was frankly a mess. Looking back at my earlier submissions, I can see the gaps in my understanding and the lack of thinking that held me back.</p>
+          <p>Assignment 2 gave me the foundation and vision, but I knew the implementation would be where I either proved I belonged in honours or continued to struggle. I made a conscious decision that this final project would be different. I wasn't going to submit something half-finished or poorly thought out.</p></div>
+
+        <div className="subsection">
+          <h3>Devlopment Changes</h3>
+           <h4>Reasoning</h4>
+          <p>Over the 3.5 weeks, I took a completely different approach to development. Instead of rushing to code, I spent the first few days really understanding React's mental model - how state flows, when to use Context vs local state, how to structure components for reusability. I researched industry patterns, looked at how professional apps handle complex state, and studied accessibility implementations because I genuinely wanted to build something</p>
+          <p> I spent hours studying professional React applications, understanding their folder structures, and learning from their patterns. When I encountered complex problems, I would research multiple solutions, understand the trade-offs, and adapt the best approaches to my specific needs. Every architectural decision came from this research and my growing understanding of React best practices. My coding strenght is still awful but I took my time and alot of patience and bug fixing to get to this point.</p>
+          <p>What's different about this project isn't just the final quality - it's that I can explain every decision I made. I know why I chose useReducer over useState for the subscription context. I understand why I separated my features into their own folders. I can defend my accessibility implementation because I researched the actual needs of users with different abilities. This isn't just working code - it's code I genuinely understand and am proud of.</p>
+          <p>This project represents not just what I can build now, but how I want to approach development in my career. The combination of personal vision, thorough research, and leveraging available tools to implement complex ideas - that's how real software gets built. I'm proud that I've finally created something that demonstrates both technical competence and genuine understanding of user-centered design.</p>
+        </div>
+      </div>
+
       {/* Development Timeline */}
       <div className="documentation-section">
         <h2>Development Timeline and Process</h2>
@@ -156,7 +175,7 @@ const Documentation = ({ screenSize }) => {
         <p>Was a game changer for the layout I had, as well as avoiding a thousand lines of media queries and classes.</p>
         
         <p>I still have the media queries as fallbacks but purely built in there for core component CSS fallback not overall functionality. This system I have right now allows any component to access the useResponsive hook and be aware of the current breakpoint.</p>
-        
+        <p>This video was a big help in doing all of this: <a href="https://www.youtube.com/watch?v=2VmvONbjDNU">"Create a Custom React Hook to Add Responsive Features to an Application"</a></p>
         <div className="image-placeholder">
           <p className="placeholder-text"><img src="/images/Doc/Responsiveness.png" alt="Form validation logic code" /></p>
         </div>
