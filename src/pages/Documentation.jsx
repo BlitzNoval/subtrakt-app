@@ -384,6 +384,20 @@ const Documentation = ({ screenSize }) => {
           <p><strong>Problem:</strong> There is no API that exists of all the subscriptions that exists with all the tiers, pricing, plans etc. This was a struggle to deal with so I decided to do the following</p>
           <p><strong>Solution:</strong> I made use of AI and my knowledge to create a JSON file with as many subscriptions as I could possibly add without it becoming egregious. I tried to cover all the possibilities to show off the capabilities. In the future if I come back to this I will develop my own API so I can pull information so much easier than hardcoding.</p>
         </div>
+
+        {/* References */}
+        <div className="documentation-section">
+          <h2>References</h2>
+          <ul>
+            <li>
+              I got all icons from{' '}
+              <a href="https://www.iconsdb.com/" target="_blank" rel="noopener noreferrer">
+                https://www.iconsdb.com/
+              </a>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
   );
