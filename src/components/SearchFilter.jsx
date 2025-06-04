@@ -18,6 +18,13 @@ const SearchFilter = ({ onSearch, onFilter, categories, importanceLevels }) => {
     onSearch(value);
   };
 
+  {
+   /* Warning icon and confirmation UI - designed for accessibility
+  // Update filters and maintain state synchronization
+  // Ensures filter persistence across page navigation
+  // Its instant which was important , but since there is no data set there has to be fake load times*/
+   }
+
   const handleFilterChange = (filterType, value) => {
     const newFilters = { ...filters, [filterType]: value };
     setFilters(newFilters);
@@ -40,6 +47,11 @@ const SearchFilter = ({ onSearch, onFilter, categories, importanceLevels }) => {
       billingCycle: ''
     });
   };
+
+  // Count active filters 
+  // Calculate active filters for visual indicator
+  // Provides user feedback on applied filter state
+  // Enhances user experience by showing active filters
 
   const activeFilterCount = Object.values(filters).filter(value => value !== '').length;
 

@@ -14,6 +14,11 @@ const DeleteConfirmationModal = ({ onConfirm, onCancel }) => {
           <h2>Delete Subscription</h2>
           <button className="close-button" onClick={onCancel}>✕</button>
         </div>
+        {
+        /* Warning icon and confirmation UI - designed for accessibility
+        // with clear visual hierarchy and action confirmation
+        // This is how I am communicating throughout the entire app , visual as well as textually*/
+        }
         <div className="modal-body">
           <div className="warning-icon">⚠️</div>
           <h3>Are you sure?</h3>
