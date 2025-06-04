@@ -25,7 +25,7 @@ const MainSubscriptionDetail = () => {
       setLoading(true);
       await new Promise(resolve => setTimeout(resolve, 300));
       
-      const found = subscriptions.find(sub => sub.id === parseInt(id));
+      const found = subscriptions.find(sub => sub.id.toString() === id);
       if (found) {
         setSubscription(found);
         const related = subscriptions
